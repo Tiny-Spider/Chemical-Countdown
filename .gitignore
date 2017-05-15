@@ -1,8 +1,4 @@
-/bin
-/lib
-/.temp
-/.idea
-*.iml
-Thumbs.db
-.DS_Store
-.mcover
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+#Folders
+/bin/*
