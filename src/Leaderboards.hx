@@ -1,12 +1,11 @@
 package;
 
-
 import sys.db.Sqlite;
 import sys.db.ResultSet;
 import sys.db.Connection;
+
 /**
- * ...
- * @author Gin
+ * LLocal leaderboard class
  */
 class Leaderboards 
 {

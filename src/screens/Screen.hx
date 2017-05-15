@@ -1,9 +1,9 @@
 package screens;
+
 import openfl.display.Sprite;
 
 /**
- * ...
- * @author Gin
+ * Base Screen Class
  */
 class Screen extends Sprite
 {

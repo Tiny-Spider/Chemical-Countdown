@@ -1,17 +1,16 @@
 package;
 
+import openfl.Lib;
+
 import openfl.display.FPS;
 import openfl.display.Sprite;
-import openfl.Lib;
+
 import screens.Screen;
 import screens.ScreenManager;
 import screens.TitleScreen;
 
-
-
 /**
- * ...
- * @author Gin
+ * Main class of the program
  */
 class Main extends Sprite 
 {

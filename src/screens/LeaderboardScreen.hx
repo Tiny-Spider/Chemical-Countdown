@@ -1,12 +1,13 @@
 package screens;
+
 import openfl.Lib;
 import openfl.display.Stage;
 import openfl.text.TextField;
+
 /**
- * ...
- * @author Gin
+ * Leaderboard Screen
  */
-class LeaderboardsScreen extends Screen
+class LeaderboardScreen extends Screen
 {
 
 	public function new() 

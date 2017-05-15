@@ -1,10 +1,11 @@
 package screens;
+
 import openfl.Lib;
 import openfl.display.Stage;
 import openfl.text.TextField;
+
 /**
- * ...
- * @author Gin
+ * Title Screen
  */
 class TitleScreen extends Screen
 {
@@ -30,8 +31,5 @@ class TitleScreen extends Screen
 		scoreTextField.text = "Title screen";
 		scoreTextField.textColor = 0x80FF00;
 		addChild(scoreTextField);
-		
-		
 	}
-	
 }
