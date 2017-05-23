@@ -1,5 +1,6 @@
 package screens;
 import openfl.Lib;
+import openfl.Assets;
 import openfl.display.Stage;
 import openfl.text.TextField;
 /**
@@ -31,7 +32,13 @@ class TitleScreen extends Screen
 		scoreTextField.textColor = 0x80FF00;
 		addChild(scoreTextField);
 		
-		
+		var button : Button = new Button(Assets.getBitmapData("img/Button1.png"), Play);
+		button.x = (Lib.current.stage.stageWidth / 100) * 20;
+		button.y = (Lib.current.stage.stageHeight / 100 ) *60;
+		addChild( button );
 	}
 	
+	private function Play(){
+		trace("Play game");
+	}
 }

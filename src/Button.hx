@@ -31,7 +31,7 @@ class Button extends Sprite
 
 	var callback:Void->Void;
 	
-	public function new(up:BitmapData, over:BitmapData = null, down:BitmapData = null, label:String, callback:Void->Void) 
+	public function new(up:BitmapData, over:BitmapData = null, down:BitmapData = null, label:String = "", callback:Void->Void) 
 	{
 		super();
 		
