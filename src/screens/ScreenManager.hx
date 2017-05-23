@@ -33,7 +33,7 @@ class ScreenManager
 	
 }
 
-public enum ScreenType {
+enum ScreenType {
 	Title;
 	Menu;
 	Game;

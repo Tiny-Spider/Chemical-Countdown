@@ -5,7 +5,7 @@ import sys.db.ResultSet;
 import sys.db.Connection;
 
 /**
- * LLocal leaderboard class
+ * Local leaderboard class
  */
 class Leaderboards 
 {
