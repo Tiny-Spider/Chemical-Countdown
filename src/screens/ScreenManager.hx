@@ -1,9 +1,9 @@
 package screens;
+
 import screens.ScreenManager.ScreenType;
 
 /**
- * ...
- * @author Gin
+ * Manages all screens
  */
 class ScreenManager 
 {
@@ -16,11 +16,11 @@ class ScreenManager
 	
 	public function LoadScreen(screenType : ScreenType){
 		switch(screenType){
-			case ScreenType.titleScreen:
+			case ScreenType.Title:
 				currentScreen = new TitleScreen();
-			case ScreenType.menuScreen:
+			case ScreenType.Menu:
 				currentScreen = new MenuScreen();
-			case ScreenType.gameScreen:
+			case ScreenType.Game:
 				currentScreen = new GameScreen();
 			//case ScreenType.leaderboardScreen:
 				//currentScreen = new LeaderboardsScreen();
@@ -33,9 +33,9 @@ class ScreenManager
 	
 }
 
-enum ScreenType{
-	titleScreen;
-	menuScreen;
-	gameScreen;
-	leaderboardScreen;
+enum ScreenType {
+	Title;
+	Menu;
+	Game;
+	Leaderboard;
 }

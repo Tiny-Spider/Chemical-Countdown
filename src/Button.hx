@@ -15,8 +15,7 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
 /**
- * ...
- * @author Gin
+ * Simple Button Class
  */
 class Button extends Sprite
 {
@@ -83,15 +82,18 @@ class Button extends Sprite
 		else
 			image.bitmapData = overBitmapData;
 	}
+	
 	function onOut( e:MouseEvent ):Void
 	{
 		image.bitmapData = upBitmapData;	
 	}
+	
 	function onDown( e:MouseEvent ):Void
 	{
 		image.bitmapData = downBitmapData;
 		mousePressed = true;
 	}
+	
 	function onUp( e:MouseEvent ):Void
 	{
 		image.bitmapData = upBitmapData;

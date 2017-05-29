@@ -1,10 +1,11 @@
 package screens;
+
 import openfl.Lib;
 import openfl.display.Stage;
 import openfl.text.TextField;
+
 /**
- * ...
- * @author Gin
+ * Game Screen
  */
 class GameScreen extends Screen
 {
@@ -12,12 +13,13 @@ class GameScreen extends Screen
 	public function new() 
 	{
 		super();
-		trace("Titlescreen loaded");
+		
+		trace("Game screen loaded");
+		
 		OnLoad();
 	}
 	
 	public override function OnLoad(){
 		
 	}
-	
 }
