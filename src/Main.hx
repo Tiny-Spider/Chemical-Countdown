@@ -28,10 +28,10 @@ class Main extends Sprite
 		instance = this;
 		tileManager = new TileManager();
 		
-		LoadScreen();
-		
 		screenManager = new ScreenManager();
 		leaderBoards = new Leaderboards();
+		
+		LoadScreen();
 		
 		addChild(new Level());
 	}
@@ -46,9 +46,6 @@ class Main extends Sprite
 	}
 	
 	public function LoadScreen(){
-		var currentScreen : Screen;
-		
-		currentScreen = new TitleScreen();
-		addChild(currentScreen);
+		screenManager.LoadScreen(ScreenType.Title);
 	}
 }

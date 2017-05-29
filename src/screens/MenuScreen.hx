@@ -14,7 +14,6 @@ class MenuScreen extends Screen
 	{
 		super();
 		trace("Menu screen loaded");
-		OnLoad();
 	}
 	
 	public override function OnLoad(){
