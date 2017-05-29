@@ -16,7 +16,6 @@ class GameScreen extends Screen
 		
 		trace("Game screen loaded");
 		
-		OnLoad();
 	}
 	
 	public override function OnLoad(){

@@ -11,7 +11,7 @@ class ScreenManager
 	
 	public function new() 
 	{
-		
+		currentScreen = new Screen();
 	}
 	
 	public function LoadScreen(screenType : ScreenType){
@@ -23,7 +23,7 @@ class ScreenManager
 			case ScreenType.Game:
 				currentScreen = new GameScreen();
 			//case ScreenType.leaderboardScreen:
-				//currentScreen = new LeaderboardsScreen();
+				////currentScreen = new LeaderboardsScreen();
 			default:
 				trace("No screen");
 		}
