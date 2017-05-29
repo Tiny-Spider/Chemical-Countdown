@@ -13,7 +13,7 @@ class TileBase extends Tile
 	
 	public function update() { };
 	
-	public override function clone():Tile {
+	public function createNew():TileBase {
 		var tile = new TileBase (x, y, id);
 		tile.matrix = matrix.clone ();
 		tile.tileset = tileset;

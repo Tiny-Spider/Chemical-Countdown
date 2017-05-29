@@ -1,7 +1,7 @@
 package;
 import openfl.display.Tile;
 import openfl.display.Tilemap;
-import tiles.TileManager;
+import tiles.*;
 import openfl.display.Sprite;
 import openfl.geom.Rectangle;
 import openfl.display.BitmapData;
@@ -21,51 +21,84 @@ import util.Random;
 class Level extends Sprite
 {
 	public static inline var tileSize:Int = 64;
-
-	private var tileMap:Tilemap;
-	private var tileManager:TileManager = new TileManager();
 	
-	private var animatedTiles:Array<TileAnimated> = new Array<TileAnimated>();
+	private var tileManager:TileManager = Main.getTileManager();
+
+	private var tileMapBackground:Tilemap;
+	private var tileMapForeground:Tilemap;
+	
+	private var tilesBackground:Array<TileBase> = new Array<TileBase>();
+	private var tilesForeground:Array<TileBase> = new Array<TileBase>();
+	
+	private var demoLevelBackground:Array<Array<Int>> = [
+		[ 0,  1,  1,  1,  2],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 6,  7,  7,  7,  8]
+		];
+	
+	private var demoLevelForeground:Array<Array<Int>> = [
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1,  9, 10, 11, -1]
+		];
 
 	public function new()
 	{
 		super();
 		
-		tileMap = new Tilemap(tileSize * 5, tileSize * 5, tileManager.getTileSet());
+		tileMapBackground = new Tilemap(tileSize * 5, tileSize * 5, tileManager.getTileSet());
+		tileMapForeground = new Tilemap(tileSize * 5, tileSize * 5, tileManager.getTileSet());
 		
-		for (x in 0...5) {
-			for (y in 0...5) {
-				var id:Int = Random.random(0, 9);
-				var tile:Tile = tileManager.getTile(id);
+		for (y in 0...demoLevelBackground.length) {
+			for (x in 0...demoLevelBackground[0].length) {
+				//trace("Building " + demoLevel[y][x] + " at " + x + ", " + y);
 				
-				addTile(tile, x, y);
+				var tile:TileBase = tileManager.getTile(demoLevelBackground[x][y]);
+				
+				if (tile != null) {
+					tilesBackground.push(tile);
+					tileMapBackground.addTile(tile);
+					
+					tile.x = tileSize * x;
+					tile.y = tileSize * y;
+				}
 			}
 		}
 		
-		addChild(tileMap);
+		for (y in 0...demoLevelForeground.length) {
+			for (x in 0...demoLevelForeground[0].length) {
+				//trace("Building " + demoLevel[y][x] + " at " + x + ", " + y);
+				
+				var tile:TileBase = tileManager.getTile(demoLevelForeground[x][y]);
+				
+				if (tile != null) {
+					tilesForeground.push(tile);
+					tileMapForeground.addTile(tile);
+					
+					tile.x = tileSize * x;
+					tile.y = tileSize * y;
+				}
+			}
+		}
+		
+		addChild(tileMapBackground);
+		addChild(tileMapForeground);
 		
 		var fps_mem:FPS_Mem = new FPS_Mem(10, 10, 0xffffff);
 		addChild(fps_mem);
 		
 		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onFrame);
 	}
-	
-	private function addTile(tile:Tile, x:Int, y:Int) {
-		if (Std.is(tile, TileAnimated)) {
-			animatedTiles.push(cast(tile, TileAnimated));
-		}
-		
-		tileMap.addTile(tile);
-		
-		tile.x = tileSize * x;
-		tile.y = tileSize * y;
-	}
 
 	private function onFrame(e:Event)
 	{
-		for (tileAnimated in animatedTiles)
+		for (tile in tilesBackground)
 		{
-			tileAnimated.update();
+			tile.update();
 		}
 	}
 

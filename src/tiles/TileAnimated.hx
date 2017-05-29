@@ -33,7 +33,7 @@ class TileAnimated extends TileBase
 		}
 	}
 	
-	public override function clone ():Tile {
+	public override function createNew():TileBase {
 		var tile = new TileAnimated (x, y, frameTime, types);
 		tile.matrix = matrix.clone ();
 		tile.tileset = tileset;

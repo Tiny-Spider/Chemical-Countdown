@@ -16,15 +16,16 @@ import screens.TitleScreen;
  */
 class Main extends Sprite 
 {
-	public static var instance: Main;
-	public static var tileManager:TileManager;
+	private static var instance:Main;
+	private static var tileManager:TileManager;
 	
-	public var screenManager: ScreenManager;
-	public var leaderBoards: Leaderboards;
+	public var screenManager:ScreenManager;
+	public var leaderBoards:Leaderboards;
 	
 	public function new(){
 		super();
 		
+		instance = this;
 		tileManager = new TileManager();
 		
 		LoadScreen();
@@ -35,9 +36,13 @@ class Main extends Sprite
 		addChild(new Level());
 	}
 	
-	public static function get_instance():Main
+	public static function getInstance():Main
 	{
 		return instance;
+	}
+	
+	public static function getTileManager():TileManager {
+		return tileManager;
 	}
 	
 	public function LoadScreen(){
