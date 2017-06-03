@@ -7,7 +7,8 @@ import screens.ScreenManager.ScreenType;
  */
 class ScreenManager 
 {
-	var currentScreen : Screen;
+	public var currentScreen : Screen;
+	public var lastScreen : Screen;
 	
 	public function new() 
 	{
@@ -15,6 +16,8 @@ class ScreenManager
 	}
 	
 	public function LoadScreen(screenType : ScreenType){
+		lastScreen = currentScreen;
+		
 		switch(screenType){
 			case ScreenType.Title:
 				currentScreen = new TitleScreen();
@@ -22,12 +25,16 @@ class ScreenManager
 				currentScreen = new MenuScreen();
 			case ScreenType.Game:
 				currentScreen = new GameScreen();
-			//case ScreenType.leaderboardScreen:
-				////currentScreen = new LeaderboardsScreen();
+			case ScreenType.Leaderboard:
+				currentScreen = new LeaderboardScreen();
 			default:
 				trace("No screen");
 		}
 		
+		
+	}
+	
+	public function LoadLastScreen(){
 		
 	}
 	

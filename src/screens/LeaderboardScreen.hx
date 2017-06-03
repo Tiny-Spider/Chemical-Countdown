@@ -3,6 +3,7 @@ package screens;
 import openfl.Lib;
 import openfl.display.Stage;
 import openfl.text.TextField;
+import screens.ScreenManager.ScreenType;
 
 /**
  * Leaderboard Screen
@@ -14,7 +15,7 @@ class LeaderboardScreen extends Screen
 	{
 		super();
 		trace("Titlescreen loaded");
-		OnLoad();
+		screenType = ScreenType.Title;
 	}
 	
 	public override function OnLoad(){

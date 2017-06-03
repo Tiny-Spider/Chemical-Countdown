@@ -1,13 +1,19 @@
 package screens;
 
+import flash.display.Stage;
+import openfl.Lib;
 import openfl.display.Sprite;
+import screens.ScreenManager.ScreenType;
 
 /**
  * Base Screen Class
  */
 class Screen extends Sprite
 {
-
+	public var screenType : ScreenType;
+	
+	var myStage : Stage;
+	
 	public function new() 
 	{
 		super();
@@ -18,6 +24,7 @@ class Screen extends Sprite
 		}
 		
 		Main.get_instance().addChild(this);
+		myStage = Lib.current.stage;
 	}
 	
 	public function OnLoad(){
