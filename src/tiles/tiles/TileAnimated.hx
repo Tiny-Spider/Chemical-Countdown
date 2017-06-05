@@ -1,5 +1,6 @@
-package tiles;
+package tiles.tiles;
 import openfl.display.Tile;
+import tiles.tiles.TileBase;
 
 /**
  * An animated tile
@@ -12,9 +13,9 @@ class TileAnimated extends TileBase
 	private var typeIndex = 0;
 	private var currentFrameTime:Int = 0;
 	
-	public function new(x:Float, y:Float, frameTime:Int, types:Array<Int>)
+	public function new(x:Float, y:Float, frameTime:Int, types:Array<Int>, isWalkable:Bool)
 	{
-		super(x, y, types[typeIndex]);
+		super(x, y, types[typeIndex], isWalkable);
 
 		this.frameTime = frameTime;
 		this.types = types;

@@ -13,11 +13,11 @@ class Screen extends Sprite
 		super();
 		OnLoad();
 		
-		if (Main.get_instance().numChildren != 0){
-			Main.get_instance().removeChildren();
+		if (Main.getInstance().numChildren != 0){
+			Main.getInstance().removeChildren();
 		}
 		
-		Main.get_instance().addChild(this);
+		Main.getInstance().addChild(this);
 	}
 	
 	public function OnLoad(){

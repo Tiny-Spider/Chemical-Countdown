@@ -22,6 +22,22 @@ class Main extends Sprite
 	public var screenManager:ScreenManager;
 	public var leaderBoards:Leaderboards;
 	
+	private var demoLevelBackground:Array<Array<Int>> = [
+		[ 0,  1,  1,  1,  2],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 6,  7,  7,  7,  8]
+		];
+	
+	private var demoLevelForeground:Array<Array<Int>> = [
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1,  9, 10, 11, -1]
+		];
+	
 	public function new(){
 		super();
 		
@@ -33,7 +49,9 @@ class Main extends Sprite
 		
 		LoadScreen();
 		
-		addChild(new Level());
+		addChild(new Level(demoLevelBackground, demoLevelForeground));
+		
+		new PathfinderTest();
 	}
 	
 	public static function getInstance():Main

@@ -5,7 +5,7 @@ import openfl.display.Tile;
 import openfl.display.Tileset;
 import openfl.Assets;
 import openfl.utils.Dictionary;
-import tiles.TileBase;
+import tiles.tiles.TileBase;
 import openfl.events.Event;
 import openfl.Lib;
 
@@ -25,8 +25,9 @@ class TileManager
 		createTileSet(Assets.getBitmapData("img/tile_atlas.png"));
 
 		// Add tiles
-		for (i in 0...(Math.round(tileset.bitmapData.height / tileSize) * Math.round(tileset.bitmapData.width / tileSize))) {
-			tiles.set(i, new TileBase(0, 0, i));
+		for (i in 0...(Math.round(tileset.bitmapData.height / tileSize) * Math.round(tileset.bitmapData.width / tileSize))) 
+		{
+			tiles.set(i, new TileBase(0, 0, i, true));
 		}
 	}
 
@@ -38,15 +39,14 @@ class TileManager
 		{
 			for (x in 0...Math.round(atlas.width / tileSize))
 			{
-				trace("Creating tile: " + tileset.addRect(new Rectangle(tileSize * y, tileSize * x, tileSize, tileSize)) + " at " + (tileSize * y) + ", " + (tileSize * x));
-				//tileset.addRect(new Rectangle(tileSize * y, tileSize * x, tileSize, tileSize));
+				tileset.addRect(new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
 			}
 		}
 	}
 
 	public function getTile(id:Int):TileBase
 	{
-		return tiles.exists(id) ? tiles.get(id).createNew() : null;
+		return tiles.exists(id) ? tiles.get(id) : null;
 	}
 
 	public function getTileSet()
