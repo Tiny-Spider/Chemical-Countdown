@@ -133,7 +133,7 @@ class Pathfinder
 		return walkableNodes;
 	}
 
-	private static function GetAdjacentLocations(fromLocation:Point):Array<Point>
+	public static function GetAdjacentLocations(fromLocation:Point):Array<Point>
 	{
 		return [
 			//new Point(fromLocation.x-1, fromLocation.y-1),

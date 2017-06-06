@@ -23,12 +23,12 @@ class LeaderboardScreen extends Screen
 		var backButton : Button = new Button(Assets.getBitmapData("img/UI/Back1.png"), Assets.getBitmapData("img/UI/Back2.png"), Assets.getBitmapData("img/UI/Back3.png"), Back);
 		
 		backButton.x = -75;
-		backButton.y = 0 + myStage.stageHeight - backButton.height;
+		backButton.y = 0 + Lib.current.stage.stageHeight - backButton.height;
 		addChild(backButton);
 	}
 	
 	function Back(){
-		Main.get_instance().screenManager.LoadLastScreen();
+		Main.getInstance().screenManager.LoadLastScreen();
 	}
 	
 }

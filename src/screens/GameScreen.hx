@@ -54,7 +54,7 @@ class GameScreen extends Screen
 		var timerText : TextField = new TextField();
 		timerText.height = 24;
 		timerText.autoSize = TextFieldAutoSize.RIGHT;
-		timerText.x = myStage.stageWidth - timerText.width ;
+		timerText.x = Lib.current.stage.stageWidth - timerText.width ;
 		timerText.y = 10;
 		timerText.text = "Timer: ";
 		timerText.textColor = 0x80FF00;
@@ -71,7 +71,7 @@ class GameScreen extends Screen
 	}
 	
 	function MenuButton(){
-		Main.get_instance().screenManager.LoadLastScreen();
+		Main.getInstance().screenManager.LoadLastScreen();
 		//var bitmapData : BitmapData; = Assets.getBitmapData("img/UI/InGameMenu.png");
 		//var inGameMenu : Bitmap = bitmapData;
 		//inGameMenu.x = (myStage.stageWidth / 2) - (inGameMenu.width / 2);

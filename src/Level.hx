@@ -6,6 +6,7 @@ import tiles.TileMapCustom;
 import tiles.tiles.TileBase;
 import util.FPS_Mem;
 import openfl.events.MouseEvent;
+import util.Point;
 
 /**
  * Level class contains the world
@@ -46,8 +47,32 @@ class Level extends Sprite
 	}
 	
 	private function onClick(e:MouseEvent) {
-		var tile:TileBase = tileMapForeground.getTileMouse(mouseX, mouseY);
+		var point:Point = tileMapForeground.mouseToPoint(mouseX, mouseY);
+		var tile:TileBase = tileMapForeground.getTile(point);
+		
+		if (tile != null && !tile.isWalkable) {
+			point = getNextOpenPoint(point);
+		}
+		
+		var path:Array<Point> = new Pathfinder(player.getPoint(), point, mapData).FindPath();
+		
+		player.setPath(path);
+		
 		
 		trace(tile);
+		if (tile != null) {
+			trace(tile.getX());
+			trace(tile.getY());
+		}
+	}
+	
+	private function getNextOpenPoint(centerPoint:Point) {
+		for (point in Pathfinder.GetAdjacentLocations(centerPoint)) {
+			if (mapData[point.x][point.y]) {
+				return point;
+			}
+		}
+		
+		return centerPoint;
 	}
 }

@@ -27,7 +27,7 @@ class TileManager
 		// Add tiles
 		for (i in 0...(Math.round(tileset.bitmapData.height / tileSize) * Math.round(tileset.bitmapData.width / tileSize))) 
 		{
-			tiles.set(i, new TileBase(0, 0, i, true));
+			tiles.set(i, new TileBase(0, 0, i, false));
 		}
 	}
 

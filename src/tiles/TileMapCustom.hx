@@ -6,6 +6,7 @@ import openfl.events.Event;
 import openfl.Lib;
 import openfl.display.Sprite;
 import tiles.tiles.TileBase;
+import util.Point;
 
 /**
  * Wrapper class for tilemap
@@ -71,12 +72,17 @@ class TileMapCustom extends Sprite
 
 	// Return the tile at X, Y
 	// May return null if tile does not exist
-	public function getTile(x:Int, y:Int):TileBase
+	public function getTile(point:Point):TileBase
+	{
+		return getTileByCoords(point.x, point.y);
+	}
+	
+	public function getTileByCoords(x:Int, y:Int):TileBase
 	{
 		return tiles[x][y];
 	}
 	
-	public function getTileMouse(x:Float, y:Float ):TileBase {
+	public function mouseToPoint(x:Float, y:Float ):Point {
 		// Localize mouse position
 		x = x - this.x;
 		y = y - this.y;
@@ -87,12 +93,12 @@ class TileMapCustom extends Sprite
 		
 		trace("getTileMouse(" + x + ", " + y + ") => " + indexX + ", " + indexY);
 		
-		return getTile(indexX, indexY);
+		return new Point(indexX, indexY);
 	}
 	
 	// Returns a map of bools of where you can walk
 	public function createPathfindMap():Array<Array<Bool>> {
-		var mapData:Array<Array<Bool>> = [for (x in 0...columns)[for (y in 0...rows) getTile(x, y) == null ? true : getTile(x, y).isWalkable ]];
+		var mapData:Array<Array<Bool>> = [for (x in 0...columns)[for (y in 0...rows) getTileByCoords(x, y) == null ? true : getTileByCoords(x, y).isWalkable ]];
 		return mapData;
 	}
 

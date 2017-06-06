@@ -69,7 +69,7 @@ class TitleScreen extends Screen
 	}
 	
 	function LeaderBoard(){
-		Main.get_instance().screenManager.LoadScreen(ScreenType.Leaderboard);
+		Main.getInstance().screenManager.LoadScreen(ScreenType.Leaderboard);
 	}
 	
 	function Quit(){
