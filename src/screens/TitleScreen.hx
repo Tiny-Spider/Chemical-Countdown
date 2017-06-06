@@ -39,21 +39,21 @@ class TitleScreen extends Screen
 		var buttonCount : Int = 0;
 		
 		//Start button
-		var startButton : Button = new Button(Assets.getBitmapData("img/UI/btn_start_up.png"), Assets.getBitmapData("img/UI/btn_start_hover.png"), Assets.getBitmapData("img/UI/btn_start_click.png"), Start);
+		var startButton : Button = new Button(Assets.getBitmapData("img/UI/Play1.png"), Assets.getBitmapData("img/UI/Play2.png"), Assets.getBitmapData("img/UI/Play3.png"), Start);
 		
 		startButton.x = myStage.stageWidth /2 - (startButton.width /2);
 		startButton.y = myStage.stageHeight / 2 - (startButton.height / 2) - (startButton.height * buttonCount);
 		addChild(startButton);
 		buttonCount++;
 		
-		var leaderBoardButton : Button = new Button(Assets.getBitmapData("img/UI/btn_quit_up.png"), Assets.getBitmapData("img/UI/btn_quit_hover.png"), Assets.getBitmapData("img/UI/btn_quit_click.png"), Quit);
+		var leaderBoardButton : Button = new Button(Assets.getBitmapData("img/UI/Highscore1.png"), Assets.getBitmapData("img/UI/Highscore2.png"), Assets.getBitmapData("img/UI/Highscore3.png"), LeaderBoard);
 		
 		leaderBoardButton.x = myStage.stageWidth /2 - (leaderBoardButton.width /2);
 		leaderBoardButton.y = myStage.stageHeight / 2 - (leaderBoardButton.height / 2  - ( leaderBoardButton.height * buttonCount));
 		addChild(leaderBoardButton);
 		buttonCount++;
 		
-		var quitButton : Button = new Button(Assets.getBitmapData("img/UI/btn_quit_up.png"), Assets.getBitmapData("img/UI/btn_quit_hover.png"), Assets.getBitmapData("img/UI/btn_quit_click.png"), Quit);
+		var quitButton : Button = new Button(Assets.getBitmapData("img/UI/Exit1.png"), Assets.getBitmapData("img/UI/Exit2.png"), Assets.getBitmapData("img/UI/Exit3.png"), Quit);
 		
 		quitButton.x = myStage.stageWidth /2 - (quitButton.width /2);
 		quitButton.y = myStage.stageHeight / 2 - (quitButton.height / 2  - ( quitButton.height * buttonCount));

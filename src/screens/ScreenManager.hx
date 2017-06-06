@@ -35,7 +35,7 @@ class ScreenManager
 	}
 	
 	public function LoadLastScreen(){
-		
+		LoadScreen(lastScreen.screenType);
 	}
 	
 }

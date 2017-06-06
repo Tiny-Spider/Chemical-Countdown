@@ -17,7 +17,6 @@ class Screen extends Sprite
 	public function new() 
 	{
 		super();
-		OnLoad();
 		
 		if (Main.get_instance().numChildren != 0){
 			Main.get_instance().removeChildren();
@@ -25,6 +24,9 @@ class Screen extends Sprite
 		
 		Main.get_instance().addChild(this);
 		myStage = Lib.current.stage;
+		trace("TRACE MYSTAGE: " + myStage);
+		
+		OnLoad();
 	}
 	
 	public function OnLoad(){

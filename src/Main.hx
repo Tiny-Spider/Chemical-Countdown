@@ -33,6 +33,8 @@ class Main extends Sprite
 		
 		LoadScreen();
 		
+		var chemManager = new ChemicalManager();
+		
 		addChild(new Level());
 	}
 	
