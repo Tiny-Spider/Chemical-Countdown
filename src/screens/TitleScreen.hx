@@ -65,7 +65,7 @@ class TitleScreen extends Screen
 	
 	function Start(){
 		trace("Start level");
-		Main.get_instance().screenManager.LoadScreen(ScreenType.Game);
+		Main.getInstance().screenManager.LoadScreen(ScreenType.Game);
 	}
 	
 	function LeaderBoard(){

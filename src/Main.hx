@@ -16,11 +16,27 @@ import screens.TitleScreen;
  */
 class Main extends Sprite 
 {
-	public static var instance: Main;
-	public static var tileManager:TileManager;
+	private static var instance:Main;
+	private static var tileManager:TileManager;
 	
-	public var screenManager: ScreenManager;
-	public var leaderBoards: Leaderboards;
+	public var screenManager:ScreenManager;
+	public var leaderBoards:Leaderboards;
+	
+	private var demoLevelBackground:Array<Array<Int>> = [
+		[ 0,  1,  1,  1,  2],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 6,  7,  7,  7,  8]
+		];
+	
+	private var demoLevelForeground:Array<Array<Int>> = [
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[-1,  9, 10, 11, -1]
+		];
 	
 	public function new(){
 		super();
@@ -33,14 +49,18 @@ class Main extends Sprite
 		
 		LoadScreen();
 		
-		var chemManager = new ChemicalManager();
+		addChild(new Level(demoLevelBackground, demoLevelForeground));
 		
-		addChild(new Level());
+		new PathfinderTest();
 	}
 	
-	public static function get_instance():Main
+	public static function getInstance():Main
 	{
 		return instance;
+	}
+	
+	public static function getTileManager():TileManager {
+		return tileManager;
 	}
 	
 	public function LoadScreen(){

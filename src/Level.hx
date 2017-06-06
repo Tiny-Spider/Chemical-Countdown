@@ -1,72 +1,53 @@
 package;
-import openfl.display.Tile;
-import openfl.display.Tilemap;
-import tiles.TileManager;
+
 import openfl.display.Sprite;
-import openfl.geom.Rectangle;
-import openfl.display.BitmapData;
-import openfl.display.Tile;
-import openfl.display.Tileset;
-import openfl.Assets;
-import openfl.utils.Dictionary;
-import tiles.TileAnimated;
 import openfl.events.Event;
-import openfl.Lib;
+import tiles.TileMapCustom;
+import tiles.tiles.TileBase;
 import util.FPS_Mem;
-import util.Random;
+import openfl.events.MouseEvent;
 
 /**
  * Level class contains the world
  */
 class Level extends Sprite
 {
-	public static inline var tileSize:Int = 64;
-
-	private var tileMap:Tilemap;
-	private var tileManager:TileManager = new TileManager();
+	private var tileMapBackground:TileMapCustom;
+	private var tileMapForeground:TileMapCustom;
+	private var player:Player;
 	
-	private var animatedTiles:Array<TileAnimated> = new Array<TileAnimated>();
+	private var mapData:Array<Array<Bool>>;
 
-	public function new()
+	public function new(backgroundData:Array<Array<Int>>, foregroundData:Array<Array<Int>>)
 	{
 		super();
 		
-		tileMap = new Tilemap(tileSize * 5, tileSize * 5, tileManager.getTileSet());
+		var mapWidth:Int = backgroundData.length;
+		var mapHeight:Int = backgroundData[0].length;
 		
-		for (x in 0...5) {
-			for (y in 0...5) {
-				var id:Int = Random.random(0, 9);
-				var tile:Tile = tileManager.getTile(id);
-				
-				addTile(tile, x, y);
-			}
-		}
+		tileMapBackground = new TileMapCustom(mapWidth, mapHeight);
+		tileMapForeground = new TileMapCustom(mapWidth, mapHeight);
 		
-		addChild(tileMap);
+		tileMapBackground.create(backgroundData);
+		tileMapForeground.create(foregroundData);
+		
+		addChild(tileMapBackground);
+		addChild(tileMapForeground);
+		
+		mapData = tileMapForeground.createPathfindMap();
+		
+		player = new Player();
+		addChild(player);
 		
 		var fps_mem:FPS_Mem = new FPS_Mem(10, 10, 0xffffff);
 		addChild(fps_mem);
 		
-		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onFrame);
+		addEventListener(MouseEvent.CLICK, onClick);
 	}
 	
-	private function addTile(tile:Tile, x:Int, y:Int) {
-		if (Std.is(tile, TileAnimated)) {
-			animatedTiles.push(cast(tile, TileAnimated));
-		}
+	private function onClick(e:MouseEvent) {
+		var tile:TileBase = tileMapForeground.getTileMouse(mouseX, mouseY);
 		
-		tileMap.addTile(tile);
-		
-		tile.x = tileSize * x;
-		tile.y = tileSize * y;
+		trace(tile);
 	}
-
-	private function onFrame(e:Event)
-	{
-		for (tileAnimated in animatedTiles)
-		{
-			tileAnimated.update();
-		}
-	}
-
 }
