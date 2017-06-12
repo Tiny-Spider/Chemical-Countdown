@@ -17,8 +17,8 @@ class Pathfinder
 	{
 		InitializeNodes(map, endPosition);
 		
-		trace(nodes.length);
-		trace(nodes[0].length);
+		//trace(nodes.length);
+		//trace(nodes[0].length);
 		
 		startNode = nodes[startPosition.x][startPosition.y];
 		startNode.state = NodeState.Open;
@@ -136,14 +136,14 @@ class Pathfinder
 	public static function GetAdjacentLocations(fromLocation:Point):Array<Point>
 	{
 		return [
-			//new Point(fromLocation.x-1, fromLocation.y-1),
-			new Point(fromLocation.x-1, fromLocation.y  ),
-			//new Point(fromLocation.x-1, fromLocation.y+1),
+			new Point(fromLocation.x,   fromLocation.y-1),
 			new Point(fromLocation.x,   fromLocation.y+1),
+			new Point(fromLocation.x-1, fromLocation.y  ),
+			new Point(fromLocation.x+1, fromLocation.y  )
+			//new Point(fromLocation.x-1, fromLocation.y-1),
+			//new Point(fromLocation.x-1, fromLocation.y+1),
 			//new Point(fromLocation.x+1, fromLocation.y+1),
-			new Point(fromLocation.x+1, fromLocation.y  ),
 			//new Point(fromLocation.x+1, fromLocation.y-1),
-			new Point(fromLocation.x,   fromLocation.y-1)
 		];
 	}
 }

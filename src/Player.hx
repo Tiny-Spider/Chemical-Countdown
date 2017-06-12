@@ -1,4 +1,5 @@
 package;
+import items.Item;
 import openfl.display.Sprite;
 import openfl.Assets;
 import openfl.display.Bitmap;
@@ -6,6 +7,7 @@ import util.Point;
 import tiles.TileManager;
 import motion.Actuate;
 import motion.easing.Linear;
+import tiles.tiles.IInteractable;
 
 /**
  * ...
@@ -14,7 +16,13 @@ import motion.easing.Linear;
 class Player extends Sprite
 {
 	private var playerSprite:Bitmap;
+	private var item:Item;
+	private var moveSpeed:Float = 0.4;
+	
+	// Pathfinding
 	private var path:Array<Point>;
+	private var nextPoint:Point;
+	private var interact:IInteractable;
 	private var navigating:Bool = false;
 	
 	public function new() 
@@ -29,7 +37,9 @@ class Player extends Sprite
 		addChild(playerSprite);
 	}
 	
-	public function setPath(path:Array<Point>) {
+	// Set or updates the path the player has to move
+	public function setPath(path:Array<Point>, interact:IInteractable) {
+		this.interact = interact;
 		this.path = path;
 		this.path.reverse();
 		
@@ -38,22 +48,40 @@ class Player extends Sprite
 		}
 	}
 	
+	// Move the character to the next point in the path
 	private function navigateNextPoint() {
+		// If there is no path or path is empty, end navigation
 		if (path == null || path.length <= 0) {
 			navigating = false;
+			
+			// See if we can still interact with something
+			if (interact != null) {
+				interact.interact(this);
+			}
+			
 			return;
 		}
 		
-		var point:Point = path.pop();
+		nextPoint = path.pop();
 		
-		if (point != null) {
+		// See if we can move to the next point
+		if (nextPoint != null) {
 			navigating = true;
 		
-			var x:Int = point.x * TileManager.tileSize;
-			var y:Int = point.y * TileManager.tileSize;
+			var x:Int = nextPoint.x * TileManager.tileSize;
+			var y:Int = nextPoint.y * TileManager.tileSize;
 			
-			Actuate.tween(this, 1.0, { x:x, y:y }).ease(Linear.easeNone).onComplete(navigateNextPoint);
+			// Move towards next point in linear fashion, and call navigateNextPoint after reaching destination
+			Actuate.tween(this, moveSpeed, { x:x, y:y }).ease(Linear.easeNone).onComplete(navigateNextPoint);
 		}
+	}
+	
+	public function getItem():Item {
+		return item;
+	}
+	
+	public function setItem(item:Item) {
+		this.item = item;
 	}
 	
 	public function getX():Int {
@@ -68,4 +96,7 @@ class Player extends Sprite
 		return new Point(getX(), getY());
 	}
 	
+	public function getNextPoint():Point {
+		return nextPoint != null ? nextPoint : getPoint();
+	}
 }

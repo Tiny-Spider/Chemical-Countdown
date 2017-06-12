@@ -8,6 +8,7 @@ import openfl.utils.Dictionary;
 import tiles.tiles.TileBase;
 import openfl.events.Event;
 import openfl.Lib;
+import tiles.tiles.TileDisposal;
 
 /**
  * Class that manages all tiles
@@ -24,11 +25,27 @@ class TileManager
 	{
 		createTileSet(Assets.getBitmapData("img/tile_atlas.png"));
 
+		
+		tiles.set(0, new TileBase(0, 0, 0, false));
+		tiles.set(1, new TileBase(0, 0, 1, false));
+		tiles.set(2, new TileBase(0, 0, 2, false));
+		tiles.set(3, new TileBase(0, 0, 3, false));
+		tiles.set(4, new TileBase(0, 0, 4, false));
+		tiles.set(5, new TileBase(0, 0, 5, false));
+		tiles.set(6, new TileBase(0, 0, 6, false));
+		tiles.set(7, new TileBase(0, 0, 7, false));
+		tiles.set(8, new TileBase(0, 0, 8, false));
+		tiles.set(9, new TileBase(0, 0, 9, false));
+		tiles.set(10, new TileDisposal(0, 0, 10, DisposalType.ACIDIC));
+		tiles.set(11, new TileBase(0, 0, 11, false));
+		
 		// Add tiles
+		/*
 		for (i in 0...(Math.round(tileset.bitmapData.height / tileSize) * Math.round(tileset.bitmapData.width / tileSize))) 
 		{
 			tiles.set(i, new TileBase(0, 0, i, false));
 		}
+		*/
 	}
 
 	private function createTileSet(atlas:BitmapData)

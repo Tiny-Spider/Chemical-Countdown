@@ -1,154 +1,75 @@
 package;
+
 import lime.Assets;
 
 /**
  * ...
  * @author Gin
  */
-class ChemicalManager 
+class ChemicalManager
 {
-	
+
 	//var dataSetPath : String = "data/Chemical list.xml";
-	//public function new() 
+	//public function new()
 	//{
-		//var xml : Xml = Xml.parse(Assets.getText("data/Chemical list.txt")).firstElement();
-		//trace(xml);
-		//
-		//trace("FIRST CHILD: " + xml.firstElement().nodeName);
-		//
-		//var count : Int = 0;
-		//for (child in xml.elements()){
-			//for (subChild in child.firstChild()){
-				////trace(subChild.nodeValue);
-				//trace(subChild.nodeName);
-			//}
-			//count++;
-		//}
-		//trace("ITERATION COUNT = " + count);
+	//var xml : Xml = Xml.parse(Assets.getText("data/Chemical list.txt")).firstElement();
+	//trace(xml);
+	//
+	//trace("FIRST CHILD: " + xml.firstElement().nodeName);
+	//
+	//var count : Int = 0;
+	//for (child in xml.elements()){
+	//for (subChild in child.firstChild()){
+	////trace(subChild.nodeValue);
+	//trace(subChild.nodeName);
 	//}
-	
-	
-	public var chemicalList : Array<Chemical> = new Array<Chemical>();
-	
-	public function new(){
+	//count++;
+	//}
+	//trace("ITERATION COUNT = " + count);
+	//}
+
+	private var chemicalList:Array<Chemical> = new Array<Chemical>();
+
+	public function new()
+	{
 		CreateChemicalList();
 	}
-	
+
 	//temp
-	function CreateChemicalList(){
-		var chemical : Chemical;
-		
-		chemical = new Chemical();
-		chemical.name = "Sulphuric Acid";
-		chemical.color = RED;
-		chemical.shape = TRIANGLE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Hydrochloric Acid";
-		chemical.color = RED;
-		chemical.shape = ROUND;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Nitric Acid";
-		chemical.color = RED;
-		chemical.shape = SQUARE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Sodium Hydroxide";
-		chemical.color = GREEN;
-		chemical.shape = TRIANGLE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "potassium Hydroxide";
-		chemical.color = GREEN;
-		chemical.shape = ROUND;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Lithium Hydroxide";
-		chemical.color = GREEN;
-		chemical.shape = SQUARE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Ethanol";
-		chemical.color = BLUE;
-		chemical.shape = TRIANGLE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Methanol";
-		chemical.color = BLUE;
-		chemical.shape = ROUND;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Acetone";
-		chemical.color = BLUE;
-		chemical.shape = SQUARE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Chlorine";
-		chemical.color = PURPLE;
-		chemical.shape = TRIANGLE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Fluorine";
-		chemical.color = PURPLE;
-		chemical.shape = ROUND;
-		chemicalList.push(chemical);
-		trace(chemicalList);
-		
-		chemical = new Chemical();
-		chemical.name = "Bromine";
-		chemical.color = PURPLE;
-		chemical.shape = SQUARE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Sodium Chloride";
-		chemical.color = YELLOW;
-		chemical.shape = TRIANGLE;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Silver Nitrate";
-		chemical.color = YELLOW;
-		chemical.shape = ROUND;
-		chemicalList.push(chemical);
-		
-		chemical = new Chemical();
-		chemical.name = "Mercuric Chloride";
-		chemical.color = YELLOW;
-		chemical.shape = SQUARE;
-		chemicalList.push(chemical);
+	private function CreateChemicalList()
+	{
+		chemicalList.push(new Chemical("Sulphuric Acid", RED, TRIANGLE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Hydrochloric Acid", RED, ROUND, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Nitric Acid", RED, SQUARE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Sodium Hydroxide", GREEN, TRIANGLE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("potassium Hydroxide", GREEN, ROUND, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Lithium Hydroxide", GREEN, SQUARE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Ethanol",BLUE,TRIANGLE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Methanol",BLUE,ROUND, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Acetone",BLUE,SQUARE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Chlorine",PURPLE,TRIANGLE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Fluorine",PURPLE,ROUND, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Bromine",PURPLE,SQUARE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Sodium Chloride",YELLOW,TRIANGLE, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Silver Nitrate",YELLOW,ROUND, DisposalType.ACIDIC));
+		chemicalList.push(new Chemical("Mercuric Chloride",YELLOW,SQUARE, DisposalType.ACIDIC));
 	}
-	
-	public function GetChemical(){
-		var randomNr: Int =  Math.round(Math.random() * chemicalList.length);
-		var newChemical : Chemical = new Chemical();
-		
-		newChemical.color = chemicalList[randomNr].color;
-		newChemical.name = chemicalList[randomNr].name;
-		newChemical.shape = chemicalList[randomNr].shape;
-		
-		return newChemical;
+
+	public function GetRandomChemical():Chemical
+	{
+		return chemicalList[Math.round(Math.random() * chemicalList.length)];
 	}
 }
 
- enum Shape{
+enum ChemicalShape
+{
 	TRIANGLE;
 	ROUND;
 	SQUARE;
 }
 
-enum Color{
+enum ChemicalColor
+{
 	RED;
 	BLUE;
 	GREEN;

@@ -18,40 +18,26 @@ class Main extends Sprite
 {
 	private static var instance:Main;
 	private static var tileManager:TileManager;
+	private static var levelManager:LevelManager;
 	
 	public var screenManager:ScreenManager;
 	public var leaderBoards:Leaderboards;
-	
-	private var demoLevelBackground:Array<Array<Int>> = [
-		[ 0,  1,  1,  1,  2],
-		[ 3,  4,  4,  4,  5],
-		[ 3,  4,  4,  4,  5],
-		[ 3,  4,  4,  4,  5],
-		[ 6,  7,  7,  7,  8]
-		];
-	
-	private var demoLevelForeground:Array<Array<Int>> = [
-		[-1, -1, -1, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[-1,  9, 10, 11, -1]
-		];
 	
 	public function new(){
 		super();
 		
 		instance = this;
+		
 		tileManager = new TileManager();
+		levelManager = new LevelManager();
 		
 		screenManager = new ScreenManager();
 		leaderBoards = new Leaderboards();
 		
 		LoadScreen();
 		
-		addChild(new Level(demoLevelBackground, demoLevelForeground));
-		
-		new PathfinderTest();
+		// Temp
+		addChild(getLevelManager().getLevel(0));
 	}
 	
 	public static function getInstance():Main
@@ -61,6 +47,10 @@ class Main extends Sprite
 	
 	public static function getTileManager():TileManager {
 		return tileManager;
+	}
+	
+	public static function getLevelManager():LevelManager {
+		return levelManager;
 	}
 	
 	public function LoadScreen(){

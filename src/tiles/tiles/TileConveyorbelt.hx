@@ -14,4 +14,11 @@ class TileConveyorbelt extends TileBase
 		super(x, y, type, false);
 	}
 	
+	
+	public function createNew():TileBase {
+		var tile = new TileConveyorbelt (x, y, id);
+		tile.matrix = matrix.clone ();
+		tile.tileset = tileset;
+		return tile;
+	}
 }
