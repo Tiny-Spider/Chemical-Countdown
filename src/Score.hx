@@ -15,10 +15,9 @@ class Score
 	
 	private var callback : Void -> Void;
 	
-	public function new(callback : Void -> Void) 
+	public function new() 
 	{
 		instance = this;
-		this.callback = callback;
 	}
 	
 	public static function GetInstance():Score
@@ -28,12 +27,21 @@ class Score
 	
 	public function ResetScore(){
 		score = 0;
-		callback();
+		if (callback != null){
+			callback();
+		}
+		
 	}
 	
 	public function ChangeScore(amount : Int){
 		score += amount;
-		callback();
+		if (callback != null){
+			callback();
+		}
+	}
+	
+	public function setCallBack(callback:Void->Void){
+		this.callback = callback;
 	}
 	
 	
