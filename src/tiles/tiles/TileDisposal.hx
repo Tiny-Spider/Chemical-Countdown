@@ -2,6 +2,7 @@ package tiles.tiles;
 
 import items.ItemChemical;
 import DisposalType;
+import src.Score;
 
 /**
  * ...
@@ -28,10 +29,10 @@ class TileDisposal extends TileBase implements IInteractable
 			var item:ItemChemical = cast(player.getItem(), ItemChemical);
 			
 			if (item.getChemical().getDisposalType() == disposalType) {
-				// Add score
+				Score.GetInstance().ChangeScore(Score.GetInstance().scorePerChemical);
 			}
 			else {
-				// Explode?
+				Score.GetInstance().ChangeScore(-Score.GetInstance().scorePerChemical);
 			}
 		}
 	}

@@ -1,8 +1,8 @@
 package screens;
 
 
-import flash.display.Bitmap;
-import flash.display.BitmapData;
+import openfl.display.Bitmap;
+import openfl.display.BitmapData;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.display.Stage;
@@ -10,22 +10,31 @@ import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFieldAutoSize;
 import screens.ScreenManager.ScreenType;
+import screens.InGameMenu;
+import src.Score;
 
 /**
  * Game Screen
  */
 class GameScreen extends Screen
 {
+	var score : Score;
+	public var inGameMenuOpen : Bool = false;
+	var inGameMenu : InGameMenu;
+	
+	var scoreText : TextField = new TextField();
 
 	public function new() 
 	{
 		super();
 		trace("Game screen loaded");
 		screenType = ScreenType.Game;
+		score = new Score(UpdateUI);
+		OnLoad();
 	}
 	
-	public function  UpdateUI(){
-		
+	function  UpdateUI(){
+		scoreText.text = "Score: " + Score.GetInstance().score;
 	}
 	
 	public override function OnLoad()
@@ -36,7 +45,7 @@ class GameScreen extends Screen
 		scoreTextFormat.font = "fonts/zero hour.ttf";
 		
 		
-		var scoreText : TextField = new TextField();
+		
 		scoreText.width = 300;
 		
 		scoreText.x = 10;
@@ -68,13 +77,29 @@ class GameScreen extends Screen
 		menuButton.x = -75;
 		menuButton.y = menuButton.height /4;
 		addChild(menuButton);
+		
+		score.ChangeScore(10);
+		score.ChangeScore(10);
+		score.ChangeScore(10);
+		score.ChangeScore(10);
+		trace(" Score" + score.score);
 	}
 	
 	function MenuButton(){
-		Main.getInstance().screenManager.LoadLastScreen();
-		//var bitmapData : BitmapData; = Assets.getBitmapData("img/UI/InGameMenu.png");
-		//var inGameMenu : Bitmap = bitmapData;
-		//inGameMenu.x = (myStage.stageWidth / 2) - (inGameMenu.width / 2);
-		//inGameMenu.y = (myStage.stageHeight / 2) - (inGameMenu.height / 2);
+		//Main.getInstance().screenManager.LoadLastScreen();
+		if (inGameMenuOpen){
+			this.removeChild(inGameMenu);
+			inGameMenuOpen = false;
+		}
+		else{
+			inGameMenuOpen = true;
+			inGameMenu = new InGameMenu(this);
+			addChild(inGameMenu);
+		}
+		//inGameMenuOpen ? this.removeChild(inGameMenu): addChild(new InGameMenu(this));
+	}
+	
+	public override function OnDestroy(){
+		score = null;
 	}
 }

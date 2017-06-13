@@ -8,33 +8,19 @@ import lime.Assets;
  */
 class ChemicalManager
 {
-
-	//var dataSetPath : String = "data/Chemical list.xml";
-	//public function new()
-	//{
-	//var xml : Xml = Xml.parse(Assets.getText("data/Chemical list.txt")).firstElement();
-	//trace(xml);
-	//
-	//trace("FIRST CHILD: " + xml.firstElement().nodeName);
-	//
-	//var count : Int = 0;
-	//for (child in xml.elements()){
-	//for (subChild in child.firstChild()){
-	////trace(subChild.nodeValue);
-	//trace(subChild.nodeName);
-	//}
-	//count++;
-	//}
-	//trace("ITERATION COUNT = " + count);
-	//}
-
 	private var chemicalList:Array<Chemical> = new Array<Chemical>();
-
+	private var instance : ChemicalManager;
+	
+	
 	public function new()
 	{
+		instance = this;
 		CreateChemicalList();
 	}
-
+	public static function GetInstance():ChemicalManagera{
+		return instance;
+	}
+	
 	//temp
 	private function CreateChemicalList()
 	{

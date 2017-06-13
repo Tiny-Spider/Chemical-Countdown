@@ -2,6 +2,8 @@ package screens;
 
 import openfl.display.Sprite;
 import screens.ScreenManager.ScreenType;
+import openfl.display.Stage;
+import openfl.Lib;
 
 /**
  * Base Screen Class
@@ -9,17 +11,20 @@ import screens.ScreenManager.ScreenType;
 class Screen extends Sprite
 {
 	public var screenType:ScreenType;
+	public var myStage: Stage;
 
 	public function new() 
 	{
 		super();
-		OnLoad();
+		
 		
 		if (Main.getInstance().numChildren != 0){
 			Main.getInstance().removeChildren();
 		}
 		
+		myStage = Lib.current.stage;
 		Main.getInstance().addChild(this);
+		//OnLoad();
 	}
 	
 	public function OnLoad(){

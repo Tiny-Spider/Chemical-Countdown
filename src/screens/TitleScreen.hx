@@ -1,6 +1,7 @@
 package screens;
 
 import openfl.Lib;
+import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.Assets;
 import openfl.display.Stage;
@@ -19,12 +20,20 @@ class TitleScreen extends Screen
 		super();
 		trace("Titlescreen loaded");
 		screenType = ScreenType.Title;
+		OnLoad();
 	}
 	
 	public override function OnLoad(){
 		
 		var scoreTextField:TextField = new TextField();
 		var myStage : Stage = Lib.current.stage;
+		
+		
+		//Background
+		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/titlescreen.png"));
+		bitmap.width = Lib.current.stage.stageWidth;
+		bitmap.height = Lib.current.stage.stageHeight;
+		addChild(bitmap);
 		
 		//Text field test
 		scoreTextField.width = 100;
