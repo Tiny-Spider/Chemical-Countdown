@@ -37,6 +37,7 @@ class GameScreen extends Screen
 		scoreText.text = "Score: " + Score.GetInstance().score;
 	}
 	
+	//Load of the UI
 	public override function OnLoad()
 	{
 		var scoreTextFormat : TextFormat = new TextFormat();
@@ -78,15 +79,11 @@ class GameScreen extends Screen
 		menuButton.y = menuButton.height /4;
 		addChild(menuButton);
 		
-		score.ChangeScore(10);
-		score.ChangeScore(10);
-		score.ChangeScore(10);
-		score.ChangeScore(10);
 		trace(" Score" + score.score);
 	}
 	
+	//Interaction with the in game menu button.
 	function MenuButton(){
-		//Main.getInstance().screenManager.LoadLastScreen();
 		if (inGameMenuOpen){
 			this.removeChild(inGameMenu);
 			inGameMenuOpen = false;
@@ -96,9 +93,9 @@ class GameScreen extends Screen
 			inGameMenu = new InGameMenu(this);
 			addChild(inGameMenu);
 		}
-		//inGameMenuOpen ? this.removeChild(inGameMenu): addChild(new InGameMenu(this));
 	}
 	
+	//WHen the object gets destroyed.
 	public override function OnDestroy(){
 		score = null;
 	}

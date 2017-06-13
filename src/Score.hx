@@ -6,7 +6,6 @@ package src;
  */
 class Score 
 {
-	
 	private static var instance : Score;
 	public var score : Int = 0;
 	public var scorePerChemical = 10;

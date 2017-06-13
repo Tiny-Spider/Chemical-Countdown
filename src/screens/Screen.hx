@@ -24,7 +24,6 @@ class Screen extends Sprite
 		
 		myStage = Lib.current.stage;
 		Main.getInstance().addChild(this);
-		//OnLoad();
 	}
 	
 	public function OnLoad(){

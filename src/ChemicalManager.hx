@@ -9,7 +9,7 @@ import lime.Assets;
 class ChemicalManager
 {
 	private var chemicalList:Array<Chemical> = new Array<Chemical>();
-	private var instance : ChemicalManager;
+	private static var instance : ChemicalManager;
 	
 	
 	public function new()
@@ -17,7 +17,7 @@ class ChemicalManager
 		instance = this;
 		CreateChemicalList();
 	}
-	public static function GetInstance():ChemicalManagera{
+	public static function GetInstance():ChemicalManager{
 		return instance;
 	}
 	

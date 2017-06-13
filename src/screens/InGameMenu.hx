@@ -41,6 +41,8 @@ class InGameMenu extends Sprite
 		//sprite.height = background.height;
 		
 		addChild(background);
+		
+		//Resume button
 		var newButton : Button = new Button(Assets.getBitmapData("img/UI/Resume1.png"), Assets.getBitmapData("img/UI/Resume2.png"), Assets.getBitmapData("img/UI/Resume3.png"), Resume);
 		
 		newButton.x = (myStage.width /2) - (newButton.width /2) - 35;
@@ -48,13 +50,15 @@ class InGameMenu extends Sprite
 		addChild(newButton);
 		buttonCount++;
 		
+		//Restart button
 		newButton = new Button(Assets.getBitmapData("img/UI/Restart1.png"), Assets.getBitmapData("img/UI/Restart2.png"), Assets.getBitmapData("img/UI/Restart3.png"), Resume);
 		
 		newButton.x = (myStage.width /2) - (newButton.width /2) - 35;
 		newButton.y = (background.y + 100) + ((newButton.height *1)* buttonCount);
 		addChild(newButton);
 		buttonCount++;
-		//
+		
+		//Exit button
 		newButton = new Button(Assets.getBitmapData("img/UI/Exit1.png"), Assets.getBitmapData("img/UI/Exit2.png"), Assets.getBitmapData("img/UI/Exit3.png"), Quit);
 		
 		newButton.x = (myStage.width /2) - (newButton.width /2) - 35;
