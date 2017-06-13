@@ -12,9 +12,9 @@ class TileDisposal extends TileBase implements IInteractable
 {
 	private var disposalType:DisposalType;
 
-	public function new(x:Float, y:Float, type:Int, disposalType:DisposalType) 
+	public function new(x:Float, y:Float, type:Int, level:Level, disposalType:DisposalType) 
 	{
-		super(x, y, type, false);
+		super(x, y, type, level, false);
 		
 		this.disposalType = disposalType;
 	}
@@ -37,8 +37,8 @@ class TileDisposal extends TileBase implements IInteractable
 		}
 	}
 	
-	public override function createNew():TileBase {
-		var tile = new TileDisposal (x, y, id, disposalType);
+	public override function createNew(level:Level):TileBase {
+		var tile = new TileDisposal (x, y, id, level, disposalType);
 		tile.matrix = matrix.clone ();
 		tile.tileset = tileset;
 		return tile;

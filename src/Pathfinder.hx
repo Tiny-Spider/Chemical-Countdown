@@ -1,6 +1,7 @@
 package;
 
 import util.Point;
+
 /**
  * ...
  * @author Mark
@@ -90,7 +91,7 @@ class Pathfinder
 	private function GetAdjacentWalkableNodes(fromNode:Node):Array<Node>
 	{
 		var walkableNodes:Array<Node> = new Array<Node>();
-		var nextLocations:Array<Point> = GetAdjacentLocations(fromNode.location);
+		var nextLocations:Array<Point> = fromNode.location.GetAdjacent();
 
 		for (location in nextLocations)
 		{
@@ -131,20 +132,6 @@ class Pathfinder
 		}
 
 		return walkableNodes;
-	}
-
-	public static function GetAdjacentLocations(fromLocation:Point):Array<Point>
-	{
-		return [
-			new Point(fromLocation.x,   fromLocation.y-1),
-			new Point(fromLocation.x,   fromLocation.y+1),
-			new Point(fromLocation.x-1, fromLocation.y  ),
-			new Point(fromLocation.x+1, fromLocation.y  )
-			//new Point(fromLocation.x-1, fromLocation.y-1),
-			//new Point(fromLocation.x-1, fromLocation.y+1),
-			//new Point(fromLocation.x+1, fromLocation.y+1),
-			//new Point(fromLocation.x+1, fromLocation.y-1),
-		];
 	}
 }
 

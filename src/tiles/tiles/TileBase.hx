@@ -9,10 +9,13 @@ class TileBase extends Tile
 {
 	public var isWalkable:Bool = true;
 	
-	public function new(x:Float, y:Float, type:Int, isWalkable:Bool) 
+	private var level:Level;
+	
+	public function new(x:Float, y:Float, type:Int, level:Level, isWalkable:Bool) 
 	{
 		super(type, x, y);
 		
+		this.level = level;
 		this.isWalkable = isWalkable;
 	}
 	
@@ -30,8 +33,8 @@ class TileBase extends Tile
 		return new Point(getX(), getY());
 	}
 	
-	public function createNew():TileBase {
-		var tile = new TileBase (x, y, id, isWalkable);
+	public function createNew(level:Level):TileBase {
+		var tile = new TileBase (x, y, id, level, isWalkable);
 		tile.matrix = matrix.clone ();
 		tile.tileset = tileset;
 		return tile;

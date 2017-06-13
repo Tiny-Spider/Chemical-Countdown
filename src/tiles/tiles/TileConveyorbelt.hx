@@ -1,24 +1,141 @@
 package tiles.tiles;
+
 import items.Item;
+import motion.Actuate;
+import motion.easing.Linear;
+import openfl.display.Tile;
+import util.Point;
+import util.Point.Direction;
 
 /**
  * ...
  * @author Mark
  */
-class TileConveyorbelt extends TileBase
+class TileConveyorbelt extends TileBase implements IInteractable
 {
 	private var currentItem:Item;
-	
-	public function new(x:Float, y:Float, type:Int) 
+	private var moveSpeed:Float = 1;
+	private var itemState:ItemState = ItemState.EMPTY;
+	private var previousPoint:Point;
+
+	public function new(x:Float, y:Float, type:Int, level:Level)
 	{
-		super(x, y, type, false);
+		super(x, y, type, level, false);
 	}
-	
-	
-	public function createNew():TileBase {
-		var tile = new TileConveyorbelt (x, y, id);
+
+	public function addItem(item:Item, point:Point):Bool
+	{
+		if (currentItem == null)
+		{
+			currentItem = item;
+
+			currentItem.x = x - (TileManager.tileSize / 2.0);
+			currentItem.y = y - (TileManager.tileSize / 2.0);
+
+			enterItem();
+			previousPoint = point;
+			
+			return true;
+		}
+		
+		return false;
+	}
+
+	public function hasItem():Bool
+	{
+		return currentItem != null;
+	}
+
+	public function interact(player:Player)
+	{
+		if (currentItem != null && player.getItem() == null)
+		{
+			player.setItem(currentItem);
+
+			Actuate.stop(currentItem, null, false, false);
+			
+			currentItem = null;
+		}
+	}
+
+	public override function update()
+	{
+		super.update();
+
+		if (itemState == ItemState.HOLD)
+		{
+			exitItem();
+		}
+	}
+
+	private function enterItem()
+	{
+		itemState = ItemState.ENTERING;
+
+		var targetX:Float = x - (TileManager.tileSize / 2.0);
+		var targetY:Float = y - (TileManager.tileSize / 2.0);
+		
+		trace('ENTER: x:$x - y:$y : targetX:$targetX - targetY:$targetY');
+		
+		Actuate.tween(currentItem, moveSpeed, { x:targetX, y:targetY }).ease(Linear.easeNone).onComplete(holdItem);
+	}
+
+	private function holdItem()
+	{
+		itemState = ItemState.HOLD;
+		exitItem();
+	}
+
+	private function exitItem()
+	{
+		for (point in getPoint().GetAdjacent())
+		{
+			var tile:TileBase = level.tileMapForeground.getTile(point);
+
+			if (tile != null && tile.getPoint() != previousPoint && Std.is(tile, TileConveyorbelt))
+			{
+				var conveyorbelt:TileConveyorbelt = cast(tile, TileConveyorbelt);
+
+				if (conveyorbelt.hasItem())
+				{
+					continue;
+				}
+
+				itemState = ItemState.EXITING;
+
+				var targetX:Float = x + (TileManager.tileSize / 2.0);
+				var targetY:Float = y - (TileManager.tileSize / 2.0);
+				
+				trace('EXIT: x:$x - y:$y : targetX:$targetX - targetY:$targetY');
+
+				Actuate.tween(currentItem, moveSpeed, { x:targetX, y:targetY }).ease(Linear.easeNone).onComplete(pushItem, [conveyorbelt]);
+
+				return;
+			}
+		}
+	}
+
+	private function pushItem(conveyorbelt:TileConveyorbelt)
+	{
+		conveyorbelt.addItem(currentItem, getPoint());
+
+		currentItem == null;
+		itemState = ItemState.EMPTY;
+	}
+
+	public override function createNew(level:Level):TileBase
+	{
+		var tile = new TileConveyorbelt (x, y, id, level);
 		tile.matrix = matrix.clone ();
 		tile.tileset = tileset;
 		return tile;
 	}
 }
+
+	enum ItemState
+	{
+		ENTERING;
+		HOLD;
+		EXITING;
+		EMPTY;
+	}
