@@ -25,6 +25,7 @@ class LeaderboardScreen extends Screen
 		backButton.x = -75;
 		backButton.y = 0 + Lib.current.stage.stageHeight - backButton.height;
 		addChild(backButton);
+		OnLoad();
 	}
 	
 	function Back(){

@@ -30,8 +30,7 @@ class ScreenManager
 			default:
 				trace("No screen");
 		}
-		
-		
+		lastScreen.OnDestroy();
 	}
 	
 	public function LoadLastScreen(){
