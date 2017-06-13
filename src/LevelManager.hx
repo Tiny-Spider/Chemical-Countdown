@@ -18,7 +18,7 @@ class LevelManager
 		];
 	
 	private var levelOneForeground:Array<Array<Int>> = [
-		[-1, -1, -1, -1, -1],
+		[12, 12, 12, 12, -1],
 		[-1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1],

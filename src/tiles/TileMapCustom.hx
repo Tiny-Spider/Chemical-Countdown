@@ -23,13 +23,15 @@ class TileMapCustom extends Sprite
 	// Columns	(x): 	|
 	private var columns:Int;
 	private var rows:Int;
+	private var level:Level;
 
-	public function new(columns:Int, rows:Int)
+	public function new(columns:Int, rows:Int, level:Level)
 	{
 		super();
 
 		this.columns = columns;
 		this.rows = rows;
+		this.level = level;
 
 		tileMap = new Tilemap(columns * TileManager.tileSize, rows * TileManager.tileSize, tileManager.getTileSet());
 
@@ -50,7 +52,7 @@ class TileMapCustom extends Sprite
 
 				if (tile != null)
 				{
-					tile = tile.createNew();
+					tile = tile.createNew(level);
 					addTile(tile, x, y);
 				}
 			}
@@ -79,6 +81,10 @@ class TileMapCustom extends Sprite
 	
 	public function getTileByCoords(x:Int, y:Int):TileBase
 	{
+		if (x < 0 || y < 0 || x > tiles.length || y > tiles[0].length) {
+			return null;
+		}
+		
 		return tiles[x][y];
 	}
 	

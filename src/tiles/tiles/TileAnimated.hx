@@ -13,9 +13,9 @@ class TileAnimated extends TileBase
 	private var typeIndex = 0;
 	private var currentFrameTime:Int = 0;
 	
-	public function new(x:Float, y:Float, frameTime:Int, types:Array<Int>, isWalkable:Bool)
+	public function new(x:Float, y:Float, frameTime:Int, types:Array<Int>, level:Level, isWalkable:Bool)
 	{
-		super(x, y, types[typeIndex], isWalkable);
+		super(x, y, types[typeIndex], level, isWalkable);
 
 		this.frameTime = frameTime;
 		this.types = types;
@@ -34,8 +34,8 @@ class TileAnimated extends TileBase
 		}
 	}
 	
-	public override function createNew():TileBase {
-		var tile = new TileAnimated (x, y, frameTime, types);
+	public override function createNew(level:Level):TileBase {
+		var tile = new TileAnimated (x, y, frameTime, types, level, isWalkable);
 		tile.matrix = matrix.clone ();
 		tile.tileset = tileset;
 		return tile;

@@ -1,6 +1,9 @@
 package items;
 
 import items.Item;
+import openfl.display.Bitmap;
+import openfl.utils.Assets;
+import tiles.TileManager;
 
 /**
  * ...
@@ -15,6 +18,16 @@ class ItemChemical extends Item
 		super();
 		
 		this.chemical = chemical;
+		
+		image = new Bitmap(Assets.getBitmapData("img/chem.png"));
+		
+		image.height = TileManager.tileSize;
+		image.width = TileManager.tileSize;
+		
+		image.x = TileManager.tileSize / 2;
+		image.y = TileManager.tileSize / 2;
+		
+		setVisible(true);
 	}
 	
 	public function getChemical():Chemical {

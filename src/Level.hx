@@ -1,5 +1,7 @@
 package;
 
+import items.Item;
+import items.ItemChemical;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import tiles.TileMapCustom;
@@ -9,14 +11,16 @@ import openfl.events.MouseEvent;
 import util.Point;
 import tiles.tiles.IInteractable;
 import tiles.tiles.TileDisposal;
+import motion.Actuate;
+import tiles.tiles.TileConveyorbelt;
 
 /**
  * Level class contains the world
  */
 class Level extends Sprite
 {
-	private var tileMapBackground:TileMapCustom;
-	private var tileMapForeground:TileMapCustom;
+	public var tileMapBackground:TileMapCustom;
+	public var tileMapForeground:TileMapCustom;
 	private var player:Player;
 
 	private var mapData:Array<Array<Bool>>;
@@ -28,8 +32,8 @@ class Level extends Sprite
 		var mapWidth:Int = backgroundData.length;
 		var mapHeight:Int = backgroundData[0].length;
 
-		tileMapBackground = new TileMapCustom(mapWidth, mapHeight);
-		tileMapForeground = new TileMapCustom(mapWidth, mapHeight);
+		tileMapBackground = new TileMapCustom(mapWidth, mapHeight, this);
+		tileMapForeground = new TileMapCustom(mapWidth, mapHeight, this);
 
 		tileMapBackground.create(backgroundData);
 		tileMapForeground.create(foregroundData);
@@ -46,6 +50,8 @@ class Level extends Sprite
 		addChild(fps_mem);
 
 		addEventListener(MouseEvent.CLICK, onClick);
+		
+		Actuate.timer(1).onComplete(insertRandomItem);
 	}
 
 	private function onClick(e:MouseEvent)
@@ -53,7 +59,7 @@ class Level extends Sprite
 		// Convert mouse coords to Point and try get Tile at that point
 		var point:Point = tileMapForeground.mouseToPoint(mouseX, mouseY);
 		var tile:TileBase = tileMapForeground.getTile(point);
-		var interact:IInteractable = null;
+		var interact:TileBase = null;
 
 		// If target tile is not walkable
 		if (tile != null && !tile.isWalkable)
@@ -61,7 +67,7 @@ class Level extends Sprite
 			// See if we can interact with it
 			if (Std.is(tile, IInteractable))
 			{
-				interact = cast(tile, IInteractable);
+				interact = tile;
 			}
 
 			point = getNextOpenPoint(point);
@@ -73,11 +79,24 @@ class Level extends Sprite
 
 		trace("Clicked Tile: " + tile);
 	}
+	
+	private function insertRandomItem() {
+		var item:Item = new ItemChemical(new ChemicalManager().GetRandomChemical());
+		var tile:TileBase = tileMapForeground.getTileByCoords(0, 0);
+		
+		if (Std.is(tile, TileConveyorbelt)) {
+			var conveyor:TileConveyorbelt = cast(tile, TileConveyorbelt);
+			
+			conveyor.addItem(item, new Point(0, 0));
+			
+			addChild(item);
+		}
+	}
 
 	// Get a nearby open tile, otherwise return the input (which will fail the pathfinding)
 	private function getNextOpenPoint(centerPoint:Point)
 	{
-		for (point in Pathfinder.GetAdjacentLocations(centerPoint))
+		for (point in centerPoint.GetAdjacent())
 		{
 			if (mapData[point.x][point.y])
 			{
