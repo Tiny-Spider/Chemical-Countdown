@@ -13,9 +13,4 @@ class Item extends Sprite
 	{
 		super();
 	}
-	
-	function Init(){
-		
-	}
-	
 }

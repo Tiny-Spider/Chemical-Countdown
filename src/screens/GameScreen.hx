@@ -12,6 +12,7 @@ import openfl.text.TextFieldAutoSize;
 import screens.ScreenManager.ScreenType;
 import screens.InGameMenu;
 import src.Score;
+import openfl.display.Sprite;
 
 /**
  * Game Screen
@@ -29,7 +30,8 @@ class GameScreen extends Screen
 		super();
 		trace("Game screen loaded");
 		screenType = ScreenType.Game;
-		score = new Score(UpdateUI);
+		score = Score.GetInstance();
+		score.setCallBack(UpdateUI);
 		OnLoad();
 	}
 	
@@ -40,6 +42,11 @@ class GameScreen extends Screen
 	//Load of the UI
 	public override function OnLoad()
 	{
+		var sprite : Sprite = new Sprite();
+		
+		
+		
+		
 		var scoreTextFormat : TextFormat = new TextFormat();
 		scoreTextFormat.size = 24;
 		scoreTextFormat.bold = true;
@@ -80,6 +87,7 @@ class GameScreen extends Screen
 		addChild(menuButton);
 		
 		trace(" Score" + score.score);
+		score.ChangeScore(50);
 	}
 	
 	//Interaction with the in game menu button.

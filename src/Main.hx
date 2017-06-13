@@ -11,6 +11,8 @@ import screens.Screen;
 import screens.ScreenManager;
 import screens.TitleScreen;
 
+import src.Score;
+
 /**
  * Main class of the program
  */
@@ -23,10 +25,16 @@ class Main extends Sprite
 	public var screenManager:ScreenManager;
 	public var leaderBoards:Leaderboards;
 	
+	public var score : Score;
+	
 	public function new(){
 		super();
 		
 		instance = this;
+		
+		
+		
+		score = new Score();
 		
 		tileManager = new TileManager();
 		levelManager = new LevelManager();
