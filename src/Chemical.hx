@@ -19,13 +19,13 @@ class Chemical
 	public var shape:ChemicalShape;
 	public var disposalType:DisposalType;
 
-	public function new(name:String, color:ChemicalColor, shape:ChemicalShape, disposalType:DisposalType)
+	public function new(name:String, color:ChemicalColor, shape:ChemicalShape, disposalType:DisposalType , imgPath:String)
 	{
 		this.name = name;
 		this.color = color;
 		this.shape = shape;
 		this.disposalType = disposalType;
 		
-		image = Assets.getBitmapData("img/chem.png");
+		image = Assets.getBitmapData(imgPath);
 	}
 }

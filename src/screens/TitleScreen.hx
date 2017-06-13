@@ -30,7 +30,7 @@ class TitleScreen extends Screen
 		
 		
 		//Background
-		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/titlescreen.png"));
+		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/background.png"));
 		bitmap.width = Lib.current.stage.stageWidth;
 		bitmap.height = Lib.current.stage.stageHeight;
 		addChild(bitmap);

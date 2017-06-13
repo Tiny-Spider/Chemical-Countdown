@@ -47,6 +47,11 @@ class GameScreen extends Screen
 	// Load of the UI
 	public override function OnLoad()
 	{
+		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/background.png"));
+		bitmap.width = Lib.current.stage.stageWidth;
+		bitmap.height = Lib.current.stage.stageHeight;
+		addChild(bitmap);
+		
 		var scoreTextFormat : TextFormat = new TextFormat("fonts/zero hour.ttf", 24, 0x80FF00, true);
 
 		// Score
