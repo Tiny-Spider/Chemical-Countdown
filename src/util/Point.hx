@@ -14,8 +14,12 @@ class Point
 		this.y = y;
 	}
 	
-	public function GetAdjacent():Array<Point> {
-		return Point.GetAdjacentPoints(this);
+	public function getAdjacent():Array<Point> {
+		return Point.getAdjacentPoints(this);
+	}
+	
+	public function equals(point:Point):Bool {
+		return point.x == x && point.y == y;
 	}
 	
 	public static function distance(location:Point, otherLocation:Point):Float
@@ -26,7 +30,7 @@ class Point
 		return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 	}
 	
-	public static function GetAdjacentPoints(fromLocation:Point):Array<Point>
+	public static function getAdjacentPoints(fromLocation:Point):Array<Point>
 	{
 		return [
 			new Point(fromLocation.x,   fromLocation.y-1),
@@ -40,7 +44,7 @@ class Point
 		];
 	}
 	
-	public static function GetDirectionBetween(fromLocation:Point, toLocation:Point):Direction {
+	public static function getDirectionBetween(fromLocation:Point, toLocation:Point):Direction {
 		/*
 		if (fromLocation.y > toLocation.y) {
 			return Direction.UP;

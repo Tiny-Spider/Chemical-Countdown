@@ -10,19 +10,23 @@ class Item extends Sprite
 {
 	private var image:Bitmap;
 
-	public function new() 
+	public function new()
 	{
 		super();
 	}
-	
-	public function setVisible(visible:Bool) {
+
+	public function setVisible(visible:Bool)
+	{
 		if (image == null) return;
-		
-		if (visible) {
+
+		if (visible)
+		{
 			addChild(image);
-		} else {
+		}
+		else
+		{
 			removeChild(image);
 		}
 	}
-	
+
 }

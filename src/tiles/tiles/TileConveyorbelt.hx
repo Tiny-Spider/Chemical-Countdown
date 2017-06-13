@@ -25,12 +25,15 @@ class TileConveyorbelt extends TileBase implements IInteractable
 
 	public function addItem(item:Item, point:Point):Bool
 	{
+		var id:Int = getX();
+		
 		if (currentItem == null)
 		{
+			trace('addItem ($id): $item currentId: $currentItem');
 			currentItem = item;
 
 			currentItem.x = x - (TileManager.tileSize / 2.0);
-			currentItem.y = y - (TileManager.tileSize / 2.0);
+			currentItem.y = y;// + (TileManager.tileSize / 2.0);
 
 			enterItem();
 			previousPoint = point;
@@ -72,10 +75,12 @@ class TileConveyorbelt extends TileBase implements IInteractable
 	{
 		itemState = ItemState.ENTERING;
 
-		var targetX:Float = x - (TileManager.tileSize / 2.0);
-		var targetY:Float = y - (TileManager.tileSize / 2.0);
+		var targetX:Float = x;// + (TileManager.tileSize / 2.0);
+		var targetY:Float = y;// + (TileManager.tileSize / 2.0);
 		
-		trace('ENTER: x:$x - y:$y : targetX:$targetX - targetY:$targetY');
+		var id:Int = getX();
+		
+		trace('ENTER ($id): x:$x - y:$y : targetX:$targetX - targetY:$targetY');
 		
 		Actuate.tween(currentItem, moveSpeed, { x:targetX, y:targetY }).ease(Linear.easeNone).onComplete(holdItem);
 	}
@@ -88,11 +93,11 @@ class TileConveyorbelt extends TileBase implements IInteractable
 
 	private function exitItem()
 	{
-		for (point in getPoint().GetAdjacent())
+		for (point in getPoint().getAdjacent())
 		{
 			var tile:TileBase = level.tileMapForeground.getTile(point);
 
-			if (tile != null && tile.getPoint() != previousPoint && Std.is(tile, TileConveyorbelt))
+			if (tile != null && !tile.getPoint().equals(previousPoint) && Std.is(tile, TileConveyorbelt))
 			{
 				var conveyorbelt:TileConveyorbelt = cast(tile, TileConveyorbelt);
 
@@ -104,9 +109,11 @@ class TileConveyorbelt extends TileBase implements IInteractable
 				itemState = ItemState.EXITING;
 
 				var targetX:Float = x + (TileManager.tileSize / 2.0);
-				var targetY:Float = y - (TileManager.tileSize / 2.0);
+				var targetY:Float = y;// + (TileManager.tileSize / 2.0);
 				
-				trace('EXIT: x:$x - y:$y : targetX:$targetX - targetY:$targetY');
+				var id:Int = getX();
+		
+				trace('EXIT ($id): x:$x - y:$y : targetX:$targetX - targetY:$targetY');
 
 				Actuate.tween(currentItem, moveSpeed, { x:targetX, y:targetY }).ease(Linear.easeNone).onComplete(pushItem, [conveyorbelt]);
 
@@ -117,12 +124,15 @@ class TileConveyorbelt extends TileBase implements IInteractable
 
 	private function pushItem(conveyorbelt:TileConveyorbelt)
 	{
+		var id:Int = getX();
+		var newId:Int = conveyorbelt.getX();
+		trace('pushItem ($id > $newId): $currentItem');
 		conveyorbelt.addItem(currentItem, getPoint());
 
-		currentItem == null;
+		currentItem = null;
 		itemState = ItemState.EMPTY;
 	}
-
+	
 	public override function createNew(level:Level):TileBase
 	{
 		var tile = new TileConveyorbelt (x, y, id, level);

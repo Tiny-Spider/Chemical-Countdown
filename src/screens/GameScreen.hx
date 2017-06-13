@@ -1,6 +1,5 @@
 package screens;
 
-
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.Lib;
@@ -21,10 +20,10 @@ class GameScreen extends Screen
 	var score : Score;
 	public var inGameMenuOpen : Bool = false;
 	var inGameMenu : InGameMenu;
-	
+
 	var scoreText : TextField = new TextField();
 
-	public function new() 
+	public function new()
 	{
 		super();
 		trace("Game screen loaded");
@@ -32,23 +31,22 @@ class GameScreen extends Screen
 		score = new Score(UpdateUI);
 		OnLoad();
 	}
-	
-	function  UpdateUI(){
+
+	private function UpdateUI()
+	{
 		scoreText.text = "Score: " + Score.GetInstance().score;
 	}
-	
-	//Load of the UI
+
+	// Load of the UI
 	public override function OnLoad()
 	{
 		var scoreTextFormat : TextFormat = new TextFormat();
 		scoreTextFormat.size = 24;
 		scoreTextFormat.bold = true;
 		scoreTextFormat.font = "fonts/zero hour.ttf";
-		
-		
-		
+
 		scoreText.width = 300;
-		
+
 		scoreText.x = 10;
 		scoreText.y = 10;
 		scoreText.border = false;
@@ -56,11 +54,10 @@ class GameScreen extends Screen
 		scoreText.borderColor = 0x80FF00;
 		scoreText.textColor = 0x80FF00;
 		scoreText.selectable = false;
-		
+
 		scoreText.setTextFormat(scoreTextFormat);
 		addChild(scoreText);
-		
-		
+
 		var timerText : TextField = new TextField();
 		timerText.height = 24;
 		timerText.autoSize = TextFieldAutoSize.RIGHT;
@@ -71,32 +68,45 @@ class GameScreen extends Screen
 		timerText.selectable = false;
 		timerText.setTextFormat(scoreTextFormat);
 		addChild(timerText);
-		
-		//Draw menu button
+
+		// Draw menu button
 		var menuButton : Button = new Button(Assets.getBitmapData("img/UI/XButton1.png"), Assets.getBitmapData("img/UI/XButton2.png"), Assets.getBitmapData("img/UI/XButton3.png"), MenuButton);
-		
+
 		menuButton.x = -75;
 		menuButton.y = menuButton.height /4;
 		addChild(menuButton);
-		
+
 		trace(" Score" + score.score);
+		loadLevel();
 	}
 	
-	//Interaction with the in game menu button.
-	function MenuButton(){
-		if (inGameMenuOpen){
+	private function loadLevel() {
+		var level:Level = Main.getLevelManager().getLevel(0);
+		
+		level.centerLevel();
+		
+		addChild(level);
+	}
+
+	// Interaction with the in game menu button.
+	private function MenuButton()
+	{
+		if (inGameMenuOpen)
+		{
 			this.removeChild(inGameMenu);
 			inGameMenuOpen = false;
 		}
-		else{
+		else
+		{
 			inGameMenuOpen = true;
 			inGameMenu = new InGameMenu(this);
 			addChild(inGameMenu);
 		}
 	}
-	
-	//WHen the object gets destroyed.
-	public override function OnDestroy(){
+
+	// When the object gets destroyed.
+	public override function OnDestroy()
+	{
 		score = null;
 	}
 }

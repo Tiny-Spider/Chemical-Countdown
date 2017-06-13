@@ -43,7 +43,7 @@ class ChemicalManager
 
 	public function GetRandomChemical():Chemical
 	{
-		return chemicalList[Math.round(Math.random() * chemicalList.length)];
+		return chemicalList[Math.floor(Math.random() * chemicalList.length)];
 	}
 }
 

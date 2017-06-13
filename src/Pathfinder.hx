@@ -72,7 +72,7 @@ class Pathfinder
 		for (nextNode in nextNodes)
 		{
 			// Check whether the end node has been reached
-			if (nextNode.location == endNode.location)
+			if (endNode != null && nextNode.location.equals(endNode.location))
 			{
 				return true;
 			}
@@ -91,7 +91,7 @@ class Pathfinder
 	private function GetAdjacentWalkableNodes(fromNode:Node):Array<Node>
 	{
 		var walkableNodes:Array<Node> = new Array<Node>();
-		var nextLocations:Array<Point> = fromNode.location.GetAdjacent();
+		var nextLocations:Array<Point> = fromNode.location.getAdjacent();
 
 		for (location in nextLocations)
 		{

@@ -64,7 +64,7 @@ class Player extends Sprite
 			if (interact != null && Std.is(interact, IInteractable))
 			{
 				// Update the direction
-				var direction:Direction = Point.GetDirectionBetween(getPoint(), interact.getPoint());
+				var direction:Direction = Point.getDirectionBetween(getPoint(), interact.getPoint());
 				setDirection(direction);
 
 				// Interact with the tile
@@ -83,7 +83,7 @@ class Player extends Sprite
 			navigating = true;
 
 			// Update direction
-			var direction:Direction = Point.GetDirectionBetween(getPoint(), nextPoint);
+			var direction:Direction = Point.getDirectionBetween(getPoint(), nextPoint);
 			setDirection(direction);
 
 			// Get coords in world space
@@ -97,6 +97,14 @@ class Player extends Sprite
 
 	public function getItem():Item
 	{
+		return item;
+	}
+
+	public function takeItem():Item
+	{
+		var item:Item = this.item;
+		this.item = null;
+		
 		return item;
 	}
 

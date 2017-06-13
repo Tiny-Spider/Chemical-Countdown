@@ -13,6 +13,8 @@ import tiles.tiles.IInteractable;
 import tiles.tiles.TileDisposal;
 import motion.Actuate;
 import tiles.tiles.TileConveyorbelt;
+import tiles.TileManager;
+import openfl.Lib;
 
 /**
  * Level class contains the world
@@ -22,6 +24,8 @@ class Level extends Sprite
 	public var tileMapBackground:TileMapCustom;
 	public var tileMapForeground:TileMapCustom;
 	private var player:Player;
+	private var mapWidth:Int;
+	private var mapHeight:Int;
 
 	private var mapData:Array<Array<Bool>>;
 
@@ -29,8 +33,8 @@ class Level extends Sprite
 	{
 		super();
 
-		var mapWidth:Int = backgroundData.length;
-		var mapHeight:Int = backgroundData[0].length;
+		mapWidth = backgroundData.length;
+		mapHeight = backgroundData[0].length;
 
 		tileMapBackground = new TileMapCustom(mapWidth, mapHeight, this);
 		tileMapForeground = new TileMapCustom(mapWidth, mapHeight, this);
@@ -51,7 +55,12 @@ class Level extends Sprite
 
 		addEventListener(MouseEvent.CLICK, onClick);
 		
-		Actuate.timer(1).onComplete(insertRandomItem);
+		Actuate.timer(3).onRepeat(insertRandomItem).repeat(20);
+	}
+	
+	public function centerLevel() {
+		x = (Lib.current.stage.stageWidth / 2.0) - ((mapWidth * TileManager.tileSize) / 2.0);
+		y = (Lib.current.stage.stageHeight / 2.0) - ((mapHeight * TileManager.tileSize) / 2.0);
 	}
 
 	private function onClick(e:MouseEvent)
@@ -77,7 +86,7 @@ class Level extends Sprite
 		var path:Array<Point> = new Pathfinder(player.getNextPoint(), point, mapData).FindPath();
 		player.setPath(path, interact);
 
-		trace("Clicked Tile: " + tile);
+		trace('Clicked Tile: $tile');
 	}
 	
 	private function insertRandomItem() {
@@ -87,16 +96,16 @@ class Level extends Sprite
 		if (Std.is(tile, TileConveyorbelt)) {
 			var conveyor:TileConveyorbelt = cast(tile, TileConveyorbelt);
 			
-			conveyor.addItem(item, new Point(0, 0));
-			
-			addChild(item);
+			if (conveyor.addItem(item, new Point(0, 0))) {
+				addChild(item);
+			}
 		}
 	}
 
 	// Get a nearby open tile, otherwise return the input (which will fail the pathfinding)
 	private function getNextOpenPoint(centerPoint:Point)
 	{
-		for (point in centerPoint.GetAdjacent())
+		for (point in centerPoint.getAdjacent())
 		{
 			if (mapData[point.x][point.y])
 			{

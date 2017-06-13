@@ -81,7 +81,7 @@ class TileMapCustom extends Sprite
 	
 	public function getTileByCoords(x:Int, y:Int):TileBase
 	{
-		if (x < 0 || y < 0 || x > tiles.length || y > tiles[0].length) {
+		if (x < 0 || y < 0 || x >= tiles.length || y >= tiles[0].length) {
 			return null;
 		}
 		
@@ -97,7 +97,7 @@ class TileMapCustom extends Sprite
 		var indexX:Int = Math.floor(x / TileManager.tileSize);
 		var indexY:Int = Math.floor(y / TileManager.tileSize);
 		
-		trace("getTileMouse(" + x + ", " + y + ") => " + indexX + ", " + indexY);
+		trace('mouseToPoint: ($x, $y) > ($indexX, $indexY)');
 		
 		return new Point(indexX, indexY);
 	}

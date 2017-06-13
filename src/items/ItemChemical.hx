@@ -24,8 +24,8 @@ class ItemChemical extends Item
 		image.height = TileManager.tileSize;
 		image.width = TileManager.tileSize;
 		
-		image.x = TileManager.tileSize / 2;
-		image.y = TileManager.tileSize / 2;
+		//image.x = -(TileManager.tileSize / 2);
+		//image.y = -(TileManager.tileSize / 2);
 		
 		setVisible(true);
 	}
