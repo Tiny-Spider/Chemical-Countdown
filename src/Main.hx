@@ -32,8 +32,6 @@ class Main extends Sprite
 		
 		instance = this;
 		
-		
-		
 		score = new Score();
 		
 		tileManager = new TileManager();
@@ -43,9 +41,6 @@ class Main extends Sprite
 		leaderBoards = new Leaderboards();
 		
 		LoadScreen();
-		
-		// Temp
-		addChild(getLevelManager().getLevel(0));
 	}
 	
 	public static function getInstance():Main

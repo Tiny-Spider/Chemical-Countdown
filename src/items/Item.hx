@@ -1,6 +1,7 @@
 package items;
 import openfl.display.Bitmap;
 import openfl.display.Sprite;
+import openfl.display.BitmapData;
 
 /**
  * ...
@@ -8,7 +9,10 @@ import openfl.display.Sprite;
  */
 class Item extends Sprite
 {
-	private var image:Bitmap;
+	public var displayName:String = "";
+	public var displayImage:BitmapData = null;
+	
+	private var tileImage:Bitmap;
 
 	public function new()
 	{
@@ -17,16 +21,9 @@ class Item extends Sprite
 
 	public function setVisible(visible:Bool)
 	{
-		if (image == null) return;
+		if (tileImage == null) return;
 
-		if (visible)
-		{
-			addChild(image);
-		}
-		else
-		{
-			removeChild(image);
-		}
+		visible ? addChild(tileImage) : removeChild(tileImage);
 	}
 
 }

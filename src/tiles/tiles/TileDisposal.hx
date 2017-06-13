@@ -30,7 +30,7 @@ class TileDisposal extends TileBase implements IInteractable
 		{
 			var item:ItemChemical = cast(player.takeItem(), ItemChemical);
 
-			if (item.getChemical().getDisposalType() == disposalType)
+			if (item.getChemical().disposalType == disposalType)
 			{
 				Score.GetInstance().ChangeScore(Score.scoreCorrectDisposal);
 			}

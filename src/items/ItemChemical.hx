@@ -19,10 +19,13 @@ class ItemChemical extends Item
 		
 		this.chemical = chemical;
 		
-		image = new Bitmap(Assets.getBitmapData("img/chem.png"));
+		displayName = chemical.name;
+		displayImage = chemical.image;
 		
-		image.height = TileManager.tileSize;
-		image.width = TileManager.tileSize;
+		tileImage = new Bitmap(displayImage);
+		
+		tileImage.height = TileManager.tileSize;
+		tileImage.width = TileManager.tileSize;
 		
 		//image.x = -(TileManager.tileSize / 2);
 		//image.y = -(TileManager.tileSize / 2);

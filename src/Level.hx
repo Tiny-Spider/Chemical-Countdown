@@ -23,7 +23,7 @@ class Level extends Sprite
 {
 	public var tileMapBackground:TileMapCustom;
 	public var tileMapForeground:TileMapCustom;
-	private var player:Player;
+	public var player:Player;
 	private var mapWidth:Int;
 	private var mapHeight:Int;
 

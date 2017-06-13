@@ -29,7 +29,7 @@ class TileConveyorbelt extends TileBase implements IInteractable
 		
 		if (currentItem == null)
 		{
-			trace('addItem ($id): $item currentId: $currentItem');
+			//trace('addItem ($id): $item currentId: $currentItem');
 			currentItem = item;
 
 			currentItem.x = x - (TileManager.tileSize / 2.0);
@@ -80,7 +80,7 @@ class TileConveyorbelt extends TileBase implements IInteractable
 		
 		var id:Int = getX();
 		
-		trace('ENTER ($id): x:$x - y:$y : targetX:$targetX - targetY:$targetY');
+		//trace('ENTER ($id): x:$x - y:$y : targetX:$targetX - targetY:$targetY');
 		
 		Actuate.tween(currentItem, moveSpeed, { x:targetX, y:targetY }).ease(Linear.easeNone).onComplete(holdItem);
 	}
@@ -113,7 +113,7 @@ class TileConveyorbelt extends TileBase implements IInteractable
 				
 				var id:Int = getX();
 		
-				trace('EXIT ($id): x:$x - y:$y : targetX:$targetX - targetY:$targetY');
+				//trace('EXIT ($id): x:$x - y:$y : targetX:$targetX - targetY:$targetY');
 
 				Actuate.tween(currentItem, moveSpeed, { x:targetX, y:targetY }).ease(Linear.easeNone).onComplete(pushItem, [conveyorbelt]);
 
@@ -126,7 +126,7 @@ class TileConveyorbelt extends TileBase implements IInteractable
 	{
 		var id:Int = getX();
 		var newId:Int = conveyorbelt.getX();
-		trace('pushItem ($id > $newId): $currentItem');
+		//trace('pushItem ($id > $newId): $currentItem');
 		conveyorbelt.addItem(currentItem, getPoint());
 
 		currentItem = null;

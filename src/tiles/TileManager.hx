@@ -37,9 +37,14 @@ class TileManager
 		tiles.set(7, new TileBase(0, 0, 7, null, false));
 		tiles.set(8, new TileBase(0, 0, 8, null, false));
 		tiles.set(9, new TileBase(0, 0, 9, null, false));
-		tiles.set(10, new TileDisposal(0, 0, 10, null, DisposalType.ACIDIC));
+		tiles.set(10, new TileBase(0, 0, 10, null, false));
 		tiles.set(11, new TileBase(0, 0, 11, null, false));
 		tiles.set(12, new TileConveyorbelt(0, 0, 12, null));
+		tiles.set(13, new TileDisposal(0, 0, 13, null, DisposalType.ACIDIC));
+		tiles.set(14, new TileDisposal(0, 0, 14, null, DisposalType.ALKALINE));
+		tiles.set(15, new TileDisposal(0, 0, 15, null, DisposalType.HALOGEN_RICH));
+		tiles.set(16, new TileDisposal(0, 0, 16, null, DisposalType.HALOGEN_LOW));
+		tiles.set(17, new TileDisposal(0, 0, 17, null, DisposalType.NEUTRAL));
 		
 		// Add tiles
 		/*

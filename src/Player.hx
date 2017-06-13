@@ -26,6 +26,8 @@ class Player extends Sprite
 	private var nextPoint:Point;
 	private var interact:TileBase;
 	private var navigating:Bool = false;
+	
+	public var onItemSwitch:Item -> Void;
 
 	public function new()
 	{
@@ -105,6 +107,8 @@ class Player extends Sprite
 		var item:Item = this.item;
 		this.item = null;
 		
+		onItemSwitch(this.item);
+		
 		return item;
 	}
 
@@ -115,6 +119,8 @@ class Player extends Sprite
 		if (item != null) {
 			item.setVisible(false);
 		}
+		
+		onItemSwitch(this.item);
 	}
 
 	public function getX():Int

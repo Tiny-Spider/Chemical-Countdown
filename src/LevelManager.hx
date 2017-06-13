@@ -22,7 +22,7 @@ class LevelManager
 		[-1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1],
-		[-1,  9, 10, 11, -1]
+		[13,  14, 15, 16, 17]
 		];
 
 	private var levelTwoBackground:Array<Array<Int>> = [
@@ -38,7 +38,7 @@ class LevelManager
 		[-1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1],
-		[-1,  9, 10, 11, -1]
+		[13,  14, 15, 16, 17]
 		];
 	
 	public function new() 
