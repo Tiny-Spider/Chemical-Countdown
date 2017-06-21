@@ -22,10 +22,10 @@ class InGameMenu extends Sprite
 		
 		myStage = Lib.current.stage;
 		Main.getInstance().addChild(this);
-		OnLoad();
+		onLoad();
 	}
 	
-	function OnLoad(){
+	function onLoad(){
 		var buttonCount : Int = 0;
 		//var sprite : Sprite = new Sprite();
 		//addChild(sprite);
@@ -43,7 +43,7 @@ class InGameMenu extends Sprite
 		addChild(background);
 		
 		//Resume button
-		var newButton : Button = new Button(Assets.getBitmapData("img/UI/Resume1.png"), Assets.getBitmapData("img/UI/Resume2.png"), Assets.getBitmapData("img/UI/Resume3.png"), Resume);
+		var newButton : Button = new Button(Assets.getBitmapData("img/UI/Resume1.png"), Assets.getBitmapData("img/UI/Resume2.png"), Assets.getBitmapData("img/UI/Resume3.png"), resume);
 		
 		newButton.x = (myStage.width /2) - (newButton.width /2) - 35;
 		newButton.y = (background.y + 100) + ((newButton.height *1)* buttonCount);
@@ -51,7 +51,7 @@ class InGameMenu extends Sprite
 		buttonCount++;
 		
 		//Restart button
-		newButton = new Button(Assets.getBitmapData("img/UI/Restart1.png"), Assets.getBitmapData("img/UI/Restart2.png"), Assets.getBitmapData("img/UI/Restart3.png"), Resume);
+		newButton = new Button(Assets.getBitmapData("img/UI/Restart1.png"), Assets.getBitmapData("img/UI/Restart2.png"), Assets.getBitmapData("img/UI/Restart3.png"), resume);
 		
 		newButton.x = (myStage.width /2) - (newButton.width /2) - 35;
 		newButton.y = (background.y + 100) + ((newButton.height *1)* buttonCount);
@@ -59,7 +59,7 @@ class InGameMenu extends Sprite
 		buttonCount++;
 		
 		//Exit button
-		newButton = new Button(Assets.getBitmapData("img/UI/Exit1.png"), Assets.getBitmapData("img/UI/Exit2.png"), Assets.getBitmapData("img/UI/Exit3.png"), Quit);
+		newButton = new Button(Assets.getBitmapData("img/UI/Exit1.png"), Assets.getBitmapData("img/UI/Exit2.png"), Assets.getBitmapData("img/UI/Exit3.png"), quit);
 		
 		newButton.x = (myStage.width /2) - (newButton.width /2) - 35;
 		newButton.y = (background.y + 100) + ((newButton.height *1)* buttonCount);
@@ -67,18 +67,18 @@ class InGameMenu extends Sprite
 		buttonCount++;
 	}
 	
-	function Resume(){
+	function resume(){
 		screen.removeChild(this);
 		trace(cast(screen, GameScreen).inGameMenuOpen);
 		cast(screen, GameScreen).inGameMenuOpen = false;
 		trace(cast(screen, GameScreen).inGameMenuOpen);
 	}
 	
-	function Restart(){
+	function restart(){
 		//Restart level here.
 	}
 	
-	function Quit(){
-		Main.getInstance().screenManager.LoadScreen(ScreenType.Title);
+	function quit(){
+		Main.getInstance().screenManager.loadScreen(ScreenType.Title);
 	}
 }

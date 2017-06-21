@@ -19,17 +19,17 @@ class LeaderboardScreen extends Screen
 		screenType = ScreenType.Leaderboard;
 	}
 	
-	public override function OnLoad(){
-		var backButton : Button = new Button(Assets.getBitmapData("img/UI/Back1.png"), Assets.getBitmapData("img/UI/Back2.png"), Assets.getBitmapData("img/UI/Back3.png"), Back);
+	public override function onLoad(){
+		var backButton : Button = new Button(Assets.getBitmapData("img/UI/Back1.png"), Assets.getBitmapData("img/UI/Back2.png"), Assets.getBitmapData("img/UI/Back3.png"), back);
 		
 		backButton.x = -75;
 		backButton.y = 0 + Lib.current.stage.stageHeight - backButton.height;
 		addChild(backButton);
-		OnLoad();
+		onLoad();
 	}
 	
-	function Back(){
-		Main.getInstance().screenManager.LoadLastScreen();
+	function back(){
+		Main.getInstance().screenManager.loadLastScreen();
 	}
 	
 }

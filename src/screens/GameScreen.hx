@@ -35,18 +35,18 @@ class GameScreen extends Screen
 		super();
 		trace("Game screen loaded");
 		screenType = ScreenType.Game;
-		score = Score.GetInstance();
-		score.setCallBack(UpdateUI);
-		OnLoad();
+		score = Score.getInstance();
+		score.setCallBack(updateUI);
+		onLoad();
 	}
 
-	private function UpdateUI()
+	private function updateUI()
 	{
-		scoreText.text = "Score: " + Score.GetInstance().score;
+		scoreText.text = "Score: " + Score.getInstance().score;
 	}
 
 	// Load of the UI
-	public override function OnLoad()
+	public override function onLoad()
 	{
 		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/background.png"));
 		bitmap.width = Lib.current.stage.stageWidth;
@@ -79,7 +79,7 @@ class GameScreen extends Screen
 		addChild(timerText);
 
 		// Menu button
-		var menuButton : Button = new Button(Assets.getBitmapData("img/UI/XButton1.png"), Assets.getBitmapData("img/UI/XButton2.png"), Assets.getBitmapData("img/UI/XButton3.png"), MenuButton);
+		var menuButton : Button = new Button(Assets.getBitmapData("img/UI/XButton1.png"), Assets.getBitmapData("img/UI/XButton2.png"), Assets.getBitmapData("img/UI/XButton3.png"), menuButton);
 
 		menuButton.x = -75;
 		menuButton.y = menuButton.height / 4;
@@ -129,7 +129,7 @@ class GameScreen extends Screen
 	}
 
 	// Interaction with the in game menu button.
-	private function MenuButton()
+	private function menuButton()
 	{
 		if (inGameMenuOpen)
 		{
@@ -145,7 +145,7 @@ class GameScreen extends Screen
 	}
 
 	// When the object gets destroyed.
-	public override function OnDestroy()
+	public override function onDestroy()
 	{
 		score = null;
 	}
