@@ -1,71 +1,86 @@
 package util;
 
+import haxe.EnumTools.EnumValueTools;
+
 /**
  * ...
  * @author Mark
  */
-class Point 
+class Point
 {
-    public var x:Int;
-    public var y:Int;
-	
-	public function new(x:Int, y:Int) {
+	public var x:Int;
+	public var y:Int;
+
+	public function new(x:Int, y:Int)
+	{
 		this.x = x;
 		this.y = y;
 	}
-	
-	public function getAdjacent():Array<Point> {
+
+	public function getAdjacent():Array<Point>
+	{
 		return Point.getAdjacentPoints(this);
 	}
-	
-	public function equals(point:Point):Bool {
+
+	public function equals(point:Point):Bool
+	{
 		return point.x == x && point.y == y;
 	}
-	
-	public static function distance(location:Point, otherLocation:Point):Float
+
+	public static function distance(fromPoint:Point, toPoint:Point):Float
 	{
-		var deltaX:Float = otherLocation.x - location.x;
-		var deltaY:Float = otherLocation.y - location.y;
-		
+		var deltaX:Float = toPoint.x - fromPoint.x;
+		var deltaY:Float = toPoint.y - fromPoint.y;
+
 		return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 	}
-	
-	public static function getAdjacentPoints(fromLocation:Point):Array<Point>
+
+	// Get adjacent points next to location (in order of Direction)
+	public static function getAdjacentPoints(centerPoint:Point):Array<Point>
 	{
 		return [
-			new Point(fromLocation.x,   fromLocation.y-1),
-			new Point(fromLocation.x,   fromLocation.y+1),
-			new Point(fromLocation.x-1, fromLocation.y  ),
-			new Point(fromLocation.x+1, fromLocation.y  )
-			//new Point(fromLocation.x-1, fromLocation.y-1),
-			//new Point(fromLocation.x-1, fromLocation.y+1),
-			//new Point(fromLocation.x+1, fromLocation.y+1),
-			//new Point(fromLocation.x+1, fromLocation.y-1),
+			new Point(centerPoint.x,   centerPoint.y-1),
+			new Point(centerPoint.x,   centerPoint.y+1),
+			new Point(centerPoint.x-1, centerPoint.y  ),
+			new Point(centerPoint.x+1, centerPoint.y  )
 		];
 	}
-	
-	public static function getDirectionBetween(fromLocation:Point, toLocation:Point):Direction {
-		/*
-		if (fromLocation.y > toLocation.y) {
-			return Direction.UP;
-		}
-		else
-		*/
-		if (fromLocation.y < toLocation.y) {
-			return Direction.DOWN;
-		}
-		else if (fromLocation.x < toLocation.x) {
-			return Direction.RIGHT;
-		}
-		else if (fromLocation.x > toLocation.x) {
-			return Direction.LEFT;
+
+	// Get adjacent points next to location but prioritises nearest direction first 
+	public static function getAdjacentDirectionalPoints(centerPoint:Point, direction:Direction):Array<Point>
+	{
+		var startIndex:Int = EnumValueTools.getIndex(direction);
+		var points:Array<Point> = getAdjacentPoints(centerPoint);
+		var newPoints:Array<Point> = new Array<Point>();
+		
+		for (index in 0...4) {
+			newPoints.push(points[(index + startIndex) % 4]);
 		}
 		
+		return newPoints;
+	}
+
+	public static function getDirectionBetween(fromPoint:Point, toPoint:Point):Direction
+	{
+		if (fromPoint.y < toPoint.y)
+		{
+			return Direction.DOWN;
+		}
+		else if (fromPoint.x < toPoint.x)
+		{
+			return Direction.RIGHT;
+		}
+		else if (fromPoint.x > toPoint.x)
+		{
+			return Direction.LEFT;
+		}
+
 		return Direction.UP;
 	}
 }
 
-enum Direction {
+enum Direction
+{
 	UP;
 	DOWN;
 	LEFT;

@@ -97,11 +97,12 @@ class Level extends Sprite
 				interact = tile;
 			}
 
-			point = getNextOpenPoint(point);
+			var direction:Direction = Point.getDirectionBetween(point, player.getPoint());
+			point = getNextOpenPoint(point, direction);
 		}
 
 		// Create path and set it on the player
-		var path:Array<Point> = new Pathfinder(player.getNextPoint(), point, mapData).FindPath();
+		var path:Array<Point> = new Pathfinder(player.getNextPoint(), point, mapData).findPath();
 		player.setPath(path, interact);
 
 		trace('Clicked Tile: $tile');
@@ -125,9 +126,9 @@ class Level extends Sprite
 	}
 
 	// Get a nearby open tile, otherwise return the input (which will fail the pathfinding)
-	private function getNextOpenPoint(centerPoint:Point)
+	private function getNextOpenPoint(centerPoint:Point, direction:Direction)
 	{
-		for (point in centerPoint.getAdjacent())
+		for (point in Point.getAdjacentDirectionalPoints(centerPoint, direction))
 		{
 			if (mapData[point.x][point.y])
 			{

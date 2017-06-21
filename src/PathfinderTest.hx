@@ -25,7 +25,7 @@ class PathfinderTest
 		var endPoint:Point = new Point(6, 3);
 		
 		var pathfinder:Pathfinder = new Pathfinder(startPoint, endPoint, map);
-		var path:Array<Point> = pathfinder.FindPath();
+		var path:Array<Point> = pathfinder.findPath();
 		
 		trace("Path Length: " + path.length);
 		

@@ -3,7 +3,7 @@ package;
 import util.Point;
 
 /**
- * An custom Haxe A* star implementation
+ * An custom Haxe A* implementation
  * @author Mark
  */
 class Pathfinder 
@@ -14,31 +14,31 @@ class Pathfinder
 	private var startNode:Node;
 	private var endNode:Node;
 
-	public function new(startPosition:Point, endPosition:Point, map:Array<Array<Bool>>)
+	public function new(startPoint:Point, endPoint:Point, map:Array<Array<Bool>>)
 	{
-		InitializeNodes(map, endPosition);
+		initializeNodes(map, endPoint);
 		
 		//trace(nodes.length);
 		//trace(nodes[0].length);
 		
-		startNode = nodes[startPosition.x][startPosition.y];
-		startNode.state = NodeState.Open;
-		endNode = nodes[endPosition.x][endPosition.y];
+		startNode = nodes[startPoint.x][startPoint.y];
+		startNode.state = NodeState.OPEN;
+		endNode = nodes[endPoint.x][endPoint.y];
 	}
 
-	public function FindPath():Array<Point>
+	public function findPath():Array<Point>
 	{
 		// The start node is the first entry in the 'open' list
 		var path:Array<Point> = new Array<Point>();
-		var success:Bool = Search(startNode);
+		var success:Bool = search(startNode);
 		
 		if (success)
 		{
-			// If a path was found, follow the parents from the end node to build a list of locations
+			// If a path was found, follow the parents from the end node to build a list of points
 			var node:Node = endNode;
 			while (node.parentNode != null)
 			{
-				path.push(node.location);
+				path.push(node.point);
 				node = node.parentNode;
 			}
 
@@ -49,18 +49,18 @@ class Pathfinder
 		return path;
 	}
 
-	private function InitializeNodes(map:Array<Array<Bool>>, endPosition:Point)
+	private function initializeNodes(map:Array<Array<Bool>>, endPosition:Point)
 	{
 		width = map.length;
 		height = map[0].length;
 		nodes = [for (x in 0...width)[for (y in 0...height) new Node(x, y, map[x][y], endPosition)]];
 	}
 
-	private function Search(currentNode:Node):Bool
+	private function search(currentNode:Node):Bool
 	{
-		// Set the current node to Closed since it cannot be traversed more than once
-		currentNode.state = NodeState.Closed;
-		var nextNodes:Array<Node> = GetAdjacentWalkableNodes(currentNode);
+		// Set the current node to CLOSED since it cannot be traversed more than once
+		currentNode.state = NodeState.CLOSED;
+		var nextNodes:Array<Node> = getAdjacentWalkableNodes(currentNode);
 		
 		// Sort by F-value so that the shortest possible routes are considered first
 		nextNodes.sort(function(a, b):Int {
@@ -72,14 +72,14 @@ class Pathfinder
 		for (nextNode in nextNodes)
 		{
 			// Check whether the end node has been reached
-			if (endNode != null && nextNode.location.equals(endNode.location))
+			if (endNode != null && nextNode.location.equals(endNode.point))
 			{
 				return true;
 			}
 			else
 			{
 				// If not, check the next set of nodes
-				if (Search(nextNode)) // Note: Recurses back into Search(Node)
+				if (search(nextNode))
 					return true;
 			}
 		}
@@ -88,34 +88,36 @@ class Pathfinder
 		return false;
 	}
 
-	private function GetAdjacentWalkableNodes(fromNode:Node):Array<Node>
+	private function getAdjacentWalkableNodes(fromNode:Node):Array<Node>
 	{
 		var walkableNodes:Array<Node> = new Array<Node>();
-		var nextLocations:Array<Point> = fromNode.location.getAdjacent();
+		var nextPoints:Array<Point> = fromNode.point.getAdjacent();
 
-		for (location in nextLocations)
+		for (point in nextPoints)
 		{
-			var x:Int = location.x;
-			var y:Int = location.y;
+			var x:Int = point.x;
+			var y:Int = point.y;
 
 			// Stay within the grid's boundaries
 			if (x < 0 || x >= width || y < 0 || y >= height)
 				continue;
 
 			var node:Node = nodes[x][y];
+			
 			// Ignore non-walkable nodes
 			if (!node.isWalkable)
 				continue;
 
 			// Ignore already-closed nodes
-			if (node.state == NodeState.Closed)
+			if (node.state == NodeState.CLOSED)
 				continue;
 
 			// Already-open nodes are only added to the list if their G-value is lower going via this route.
-			if (node.state == NodeState.Open)
+			if (node.state == NodeState.OPEN)
 			{
-				var traversalCost:Float = Point.distance(node.location, node.parentNode.location);
+				var traversalCost:Float = Point.distance(node.point, node.parentNode.point);
 				var gTemp:Float = fromNode.G + traversalCost;
+				
 				if (gTemp < node.G)
 				{
 					node.parentNode = fromNode;
@@ -124,9 +126,9 @@ class Pathfinder
 			}
 			else
 			{
-				// If it's untested, set the parent and flag it as 'Open' for consideration
+				// If it's untested, set the parent and mark it OPEN
 				node.parentNode = fromNode;
-				node.state = NodeState.Open;
+				node.state = NodeState.OPEN;
 				walkableNodes.push(node);
 			}
 		}
@@ -136,12 +138,12 @@ class Pathfinder
 }
 
 class Node {
-    public var location:Point;
+    public var point:Point;
     public var isWalkable:Bool;
     public var G:Float;
     public var H:Float;
 	public var F(get, null):Float;
-    public var state:NodeState = NodeState.Untested;
+    public var state:NodeState = NodeState.UNTESTED;
     @:isVar public var parentNode(default, set):Node;
 	
     function get_F():Float {
@@ -149,24 +151,24 @@ class Node {
     }
 	
 	function set_parentNode(value:Node) { 
-		G = value.G + Point.distance(location, value.location);
+		G = value.G + Point.distance(point, value.point);
 		parentNode = value;
 		
 		return value;
 	}
 	
-	public function new(x:Int, y:Int, isWalkable:Bool, endLocation:Point)
+	public function new(x:Int, y:Int, isWalkable:Bool, endPoint:Point)
 	{
-		location = new Point(x, y);
+		point = new Point(x, y);
 		this.isWalkable = isWalkable;
-		this.H = Point.distance(location, endLocation);
+		this.H = Point.distance(point, endPoint);
 		this.G = 0;
 	}
 
 	public function toString():String
 	{
-		return location.x + ", " + location.y + ":" + state;
+		return point.x + ", " + point.y + ":" + state;
 	}
 }
  
-enum NodeState { Untested; Open; Closed; }
+enum NodeState { UNTESTED; OPEN; CLOSED; }
