@@ -33,7 +33,7 @@ class Player extends Sprite
 	{
 		super();
 
-		playerSprite = new Bitmap(Assets.getBitmapData("img/player.png"));
+		playerSprite = new Bitmap(Assets.getBitmapData("img/player/down.png"));
 
 		playerSprite.height = TileManager.tileSize;
 		playerSprite.width = TileManager.tileSize;
