@@ -12,7 +12,7 @@ import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFieldAutoSize;
 import screens.ScreenManager.ScreenType;
-import screens.InGameMenu;
+import screens.ScreenGameMenu;
 import src.Score;
 import util.FPS_Mem;
 
@@ -24,7 +24,7 @@ class ScreenGame extends Screen
 	public var inGameMenuOpen : Bool = false;
 	
 	private var score : Score;
-	private var inGameMenu : InGameMenu;
+	private var inGameMenu : ScreenGameMenu;
 
 	private var scoreText : TextField = new TextField();
 	private var timerText : TextField = new TextField();
@@ -35,10 +35,12 @@ class ScreenGame extends Screen
 	public function new()
 	{
 		super();
+		
 		trace("Game screen loaded");
 		screenType = ScreenType.Game;
 		score = Score.getInstance();
 		score.setCallBack(updateUI);
+		
 		onLoad();
 	}
 
@@ -141,7 +143,7 @@ class ScreenGame extends Screen
 		else
 		{
 			inGameMenuOpen = true;
-			inGameMenu = new InGameMenu(this);
+			inGameMenu = new ScreenGameMenu(this);
 			addChild(inGameMenu);
 		}
 	}

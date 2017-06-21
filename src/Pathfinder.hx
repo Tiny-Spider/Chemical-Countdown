@@ -72,7 +72,7 @@ class Pathfinder
 		for (nextNode in nextNodes)
 		{
 			// Check whether the end node has been reached
-			if (endNode != null && nextNode.location.equals(endNode.point))
+			if (endNode != null && nextNode.point.equals(endNode.point))
 			{
 				return true;
 			}

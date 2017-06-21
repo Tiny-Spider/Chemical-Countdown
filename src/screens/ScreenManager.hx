@@ -13,6 +13,8 @@ class ScreenManager
 	public function new() 
 	{
 		currentScreen = new Screen();
+		
+		
 	}
 	
 	public function loadScreen(screenType : ScreenType){
@@ -30,6 +32,7 @@ class ScreenManager
 			default:
 				trace("No screen");
 		}
+		
 		lastScreen.onDestroy();
 	}
 	

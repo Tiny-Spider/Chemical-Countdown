@@ -43,8 +43,8 @@ class TileMapCustom extends Sprite
 
 	public function create(tileData:Array<Array<Int>>)
 	{
-		tiles = [for (y in 0...tileData.length)[for (x in 0...tileData[0].length) null]];
-		
+		tiles = [for (x in 0...tileData[0].length)[for (y in 0...tileData.length) null]];
+	
 		for (y in 0...tileData.length)
 		{
 			for (x in 0...tileData[0].length)

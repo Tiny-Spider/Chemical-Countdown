@@ -10,7 +10,7 @@ import openfl.Lib;
 /**
  * Base Screen Class
  */
-class InGameMenu extends Sprite
+class ScreenGameMenu extends Sprite
 {
 	public var myStage: Stage;
 	var screen : Screen;

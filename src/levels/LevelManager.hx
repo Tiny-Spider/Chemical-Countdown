@@ -9,24 +9,24 @@ import util.Point;
  */
 class LevelManager 
 {
-	private var levels:Array<levels.LevelData> = new Array<levels.LevelData>();
+	private var levels:Array<LevelData> = new Array<LevelData>();
 
 	private var levelOneBackground:Array<Array<Int>> = [
-		[ 0,  1,  1,  1,  2],
-		[ 3,  4,  4,  4,  5],
-		[ 3,  4,  4,  4,  5],
-		[ 3,  4,  4,  4,  5],
-		[ 6,  7,  7,  7,  8]
+		[ 0,  1,  1,  1,  1,  1,  2],
+		[ 3,  4,  4,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  4,  4,  5],
+		[ 6,  7,  7,  7,  7,  7,  8]
 		];
 	
 	private var levelOneForeground:Array<Array<Int>> = [
-		[14, 14, 14, 14, -1],
-		[-1, -1, -1, -1, -1],
-		[-1, 18, 19, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[9,  10, 11, 12, 13]
+		[14, 14, 14, 14, 14, 14, -1],
+		[-1, -1, -1, -1, -1, -1, -1],
+		[-1, 18, 19, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1, -1, -1],
+		[-1,  9, 10, 11, 12, 13, -1]
 		];
-
+		
 	private var levelTwoBackground:Array<Array<Int>> = [
 		[ 0,  1,  1,  1,  2],
 		[ 3,  4,  4,  4,  5],
@@ -36,22 +36,6 @@ class LevelManager
 		];
 	
 	private var levelTwoForeground:Array<Array<Int>> = [
-		[-1, -1, -1, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[13,  14, 15, 16, 17]
-		];
-		
-	private var levelTestBackground:Array<Array<Int>> = [
-		[ 0,  1,  1,  1,  2],
-		[ 3,  4,  4,  4,  5],
-		[ 3,  4,  4,  4,  5],
-		[ 3,  4,  4,  4,  5],
-		[ 6,  7,  7,  7,  8]
-		];
-	
-	private var levelTestForeground:Array<Array<Int>> = [
 		[-1, 12, -1,  9, -1],
 		[18, -1, -1, -1, 19],
 		[14, 14, 14, -1, -1],
@@ -61,8 +45,8 @@ class LevelManager
 	
 	public function new() 
 	{
-		levels.push(new levels.LevelData(3.0, 20, new Point(0, 2), new Point(2, 0), levelTestBackground, levelTestForeground));
-		//levels.push(new Level(levelTwoBackground, levelTwoForeground));
+		levels.push(new LevelData(3.0, 20, new Point(0, 0), new Point(0, 1), levelOneBackground, levelOneForeground));
+		levels.push(new LevelData(3.0, 20, new Point(0, 2), new Point(2, 0), levelTwoBackground, levelTwoForeground));
 	}
 	
 	public function getLevel(id:Int) 

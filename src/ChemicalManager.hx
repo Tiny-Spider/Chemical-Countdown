@@ -44,7 +44,7 @@ class ChemicalManager
 		chemicalList.push(new Chemical("Hydrochloric Acid", RED, ROUND, DisposalType.ACIDIC,"img/chemicals/flask_round_red.png"));
 		chemicalList.push(new Chemical("Nitric Acid", RED, SQUARE, DisposalType.ACIDIC, "img/chemicals/flask_red_square.png"));
 		chemicalList.push(new Chemical("Sodium Hydroxide", GREEN, TRIANGLE, DisposalType.ACIDIC,"img/chemicals/flask_green_triangle.png"));
-		chemicalList.push(new Chemical("potassium Hydroxide", GREEN, ROUND, DisposalType.ACIDIC,"img/chemicals/flask_round_green.png"));
+		chemicalList.push(new Chemical("Potassium Hydroxide", GREEN, ROUND, DisposalType.ACIDIC,"img/chemicals/flask_round_green.png"));
 		chemicalList.push(new Chemical("Lithium Hydroxide", GREEN, SQUARE, DisposalType.ACIDIC,"img/chemicals/flask_green_square.png"));
 		chemicalList.push(new Chemical("Ethanol",BLUE,TRIANGLE, DisposalType.ACIDIC,"img/chemicals/flask_blue_triangle.png"));
 		chemicalList.push(new Chemical("Methanol",BLUE,ROUND, DisposalType.ACIDIC,"img/chemicals/flask_round_blue.png"));

@@ -45,8 +45,8 @@ class Level extends Sprite
 		this.levelData = levelData;
 		
 		// Map settings
-		mapWidth = levelData.backgroundData.length;
-		mapHeight = levelData.backgroundData[0].length;
+		mapWidth = levelData.backgroundData[0].length;
+		mapHeight = levelData.backgroundData.length;
 
 		// Tilemaps
 		tileMapBackground = new TileMapCustom(mapWidth, mapHeight, this);
