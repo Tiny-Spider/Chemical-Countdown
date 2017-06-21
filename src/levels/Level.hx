@@ -1,7 +1,8 @@
-package;
+package levels;
 
 import items.Item;
 import items.ItemChemical;
+import levels.LevelData;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import tiles.TileMapCustom;

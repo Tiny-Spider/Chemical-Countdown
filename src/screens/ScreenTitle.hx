@@ -12,7 +12,7 @@ import screens.ScreenManager;
 /**
  * Title Screen
  */
-class TitleScreen extends Screen
+class ScreenTitle extends Screen
 {
 
 	public function new() 

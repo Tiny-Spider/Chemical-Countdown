@@ -2,6 +2,7 @@ package tiles.tiles;
 
 import items.ItemChemical;
 import DisposalType;
+import levels.Level;
 import src.Score;
 
 /**

@@ -8,7 +8,7 @@ import screens.ScreenManager.ScreenType;
 /**
  * Menu Screen
  */
-class MenuScreen extends Screen
+class ScreenMenu extends Screen
 {
 
 	public function new() 

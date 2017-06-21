@@ -1,4 +1,4 @@
-package;
+package levels;
 
 import openfl.utils.Dictionary;
 import util.Point;
@@ -9,7 +9,7 @@ import util.Point;
  */
 class LevelManager 
 {
-	private var levels:Array<LevelData> = new Array<LevelData>();
+	private var levels:Array<levels.LevelData> = new Array<levels.LevelData>();
 
 	private var levelOneBackground:Array<Array<Int>> = [
 		[ 0,  1,  1,  1,  2],
@@ -61,7 +61,7 @@ class LevelManager
 	
 	public function new() 
 	{
-		levels.push(new LevelData(3.0, 20, new Point(0, 2), new Point(2, 0), levelTestBackground, levelTestForeground));
+		levels.push(new levels.LevelData(3.0, 20, new Point(0, 2), new Point(2, 0), levelTestBackground, levelTestForeground));
 		//levels.push(new Level(levelTwoBackground, levelTwoForeground));
 	}
 	

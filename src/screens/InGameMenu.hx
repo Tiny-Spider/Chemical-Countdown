@@ -69,9 +69,9 @@ class InGameMenu extends Sprite
 	
 	function resume(){
 		screen.removeChild(this);
-		trace(cast(screen, GameScreen).inGameMenuOpen);
-		cast(screen, GameScreen).inGameMenuOpen = false;
-		trace(cast(screen, GameScreen).inGameMenuOpen);
+		trace(cast(screen, ScreenGame).inGameMenuOpen);
+		cast(screen, ScreenGame).inGameMenuOpen = false;
+		trace(cast(screen, ScreenGame).inGameMenuOpen);
 	}
 	
 	function restart(){

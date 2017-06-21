@@ -1,4 +1,5 @@
 package tiles.tiles;
+import levels.Level;
 import openfl.display.Tile;
 import util.Point;
 

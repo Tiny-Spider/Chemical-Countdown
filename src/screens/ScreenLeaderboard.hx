@@ -9,7 +9,7 @@ import screens.ScreenManager.ScreenType;
 /**
  * Leaderboard Screen
  */
-class LeaderboardScreen extends Screen
+class ScreenLeaderboard extends Screen
 {
 
 	public function new() 

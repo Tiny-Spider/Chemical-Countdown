@@ -1,6 +1,8 @@
 package screens;
 
 import items.Item;
+import levels.Level;
+import levels.LevelData;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.Lib;
@@ -17,7 +19,7 @@ import util.FPS_Mem;
 /**
  * Game Screen
  */
-class GameScreen extends Screen
+class ScreenGame extends Screen
 {
 	public var inGameMenuOpen : Bool = false;
 	

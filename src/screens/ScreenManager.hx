@@ -20,13 +20,13 @@ class ScreenManager
 		
 		switch(screenType){
 			case ScreenType.Title:
-				currentScreen = new TitleScreen();
+				currentScreen = new ScreenTitle();
 			case ScreenType.Menu:
-				currentScreen = new MenuScreen();
+				currentScreen = new ScreenMenu();
 			case ScreenType.Game:
-				currentScreen = new GameScreen();
+				currentScreen = new ScreenGame();
 			case ScreenType.Leaderboard:
-				currentScreen = new LeaderboardScreen();
+				currentScreen = new ScreenLeaderboard();
 			default:
 				trace("No screen");
 		}

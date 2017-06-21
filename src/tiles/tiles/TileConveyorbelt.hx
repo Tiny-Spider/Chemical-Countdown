@@ -1,6 +1,7 @@
 package tiles.tiles;
 
 import items.Item;
+import levels.Level;
 import motion.Actuate;
 import motion.easing.Linear;
 import openfl.display.Tile;

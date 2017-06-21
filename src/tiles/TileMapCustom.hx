@@ -1,5 +1,6 @@
 package tiles;
 
+import levels.Level;
 import openfl.display.Tile;
 import openfl.display.Tilemap;
 import openfl.events.Event;
