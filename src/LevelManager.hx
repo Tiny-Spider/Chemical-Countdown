@@ -1,13 +1,15 @@
 package;
+
 import openfl.utils.Dictionary;
+import util.Point;
 
 /**
  * ...
- * @author Gin
+ * @author Mark
  */
 class LevelManager 
 {
-	private var levels:Array<Level> = new Array<Level>();
+	private var levels:Array<LevelData> = new Array<LevelData>();
 
 	private var levelOneBackground:Array<Array<Int>> = [
 		[ 0,  1,  1,  1,  2],
@@ -18,11 +20,11 @@ class LevelManager
 		];
 	
 	private var levelOneForeground:Array<Array<Int>> = [
-		[12, 12, 12, 12, -1],
+		[14, 14, 14, 14, -1],
 		[-1, -1, -1, -1, -1],
+		[-1, 18, 19, -1, -1],
 		[-1, -1, -1, -1, -1],
-		[-1, -1, -1, -1, -1],
-		[13,  14, 15, 16, 17]
+		[9,  10, 11, 12, 13]
 		];
 
 	private var levelTwoBackground:Array<Array<Int>> = [
@@ -40,11 +42,27 @@ class LevelManager
 		[-1, -1, -1, -1, -1],
 		[13,  14, 15, 16, 17]
 		];
+		
+	private var levelTestBackground:Array<Array<Int>> = [
+		[ 0,  1,  1,  1,  2],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 3,  4,  4,  4,  5],
+		[ 6,  7,  7,  7,  8]
+		];
+	
+	private var levelTestForeground:Array<Array<Int>> = [
+		[-1, 12, -1,  9, -1],
+		[18, -1, -1, -1, 19],
+		[14, 14, 14, -1, -1],
+		[-1, -1, -1, -1, -1],
+		[10, -1, 13, -1, 11]
+		];
 	
 	public function new() 
 	{
-		levels.push(new Level(levelOneBackground, levelOneForeground));
-		levels.push(new Level(levelTwoBackground, levelTwoForeground));
+		levels.push(new LevelData(3.0, 20, new Point(0, 2), new Point(2, 0), levelTestBackground, levelTestForeground));
+		//levels.push(new Level(levelTwoBackground, levelTwoForeground));
 	}
 	
 	public function getLevel(id:Int) 

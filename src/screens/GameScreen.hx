@@ -12,6 +12,7 @@ import openfl.text.TextFieldAutoSize;
 import screens.ScreenManager.ScreenType;
 import screens.InGameMenu;
 import src.Score;
+import util.FPS_Mem;
 
 /**
  * Game Screen
@@ -100,12 +101,16 @@ class GameScreen extends Screen
 		
 		addChild(itemText);
 		addChild(itemImage);
+		
+		var fps_mem:FPS_Mem = new FPS_Mem(10, 10, 0xffffff);
+		addChild(fps_mem);
 
 		loadLevel();
 	}
 	
 	private function loadLevel() {
-		var level:Level = Main.getLevelManager().getLevel(0);
+		var leveldata:LevelData = Main.getLevelManager().getLevel(0);
+		var level:Level = new Level(leveldata);
 		
 		level.centerLevel();
 		level.player.onItemSwitch = updateItemDisplay;

@@ -15,52 +15,70 @@ import motion.Actuate;
 import tiles.tiles.TileConveyorbelt;
 import tiles.TileManager;
 import openfl.Lib;
+import src.Score;
 
 /**
  * Level class contains the world
  */
 class Level extends Sprite
 {
+	
+	public static inline var scale_X = 0.5;
+	public static inline var scale_Y = 0.5;
+	
 	public var tileMapBackground:TileMapCustom;
 	public var tileMapForeground:TileMapCustom;
+	
 	public var player:Player;
+	
 	private var mapWidth:Int;
 	private var mapHeight:Int;
 
+	private var levelData:LevelData;
 	private var mapData:Array<Array<Bool>>;
 
-	public function new(backgroundData:Array<Array<Int>>, foregroundData:Array<Array<Int>>)
+	public function new(levelData:LevelData)
 	{
 		super();
 
-		mapWidth = backgroundData.length;
-		mapHeight = backgroundData[0].length;
+		this.levelData = levelData;
+		
+		// Map settings
+		mapWidth = levelData.backgroundData.length;
+		mapHeight = levelData.backgroundData[0].length;
 
+		// Tilemaps
 		tileMapBackground = new TileMapCustom(mapWidth, mapHeight, this);
 		tileMapForeground = new TileMapCustom(mapWidth, mapHeight, this);
 
-		tileMapBackground.create(backgroundData);
-		tileMapForeground.create(foregroundData);
+		tileMapBackground.create(levelData.backgroundData);
+		tileMapForeground.create(levelData.foregroundData);
 
 		addChild(tileMapBackground);
 		addChild(tileMapForeground);
 
+		// Create pathfinding data from foreground
 		mapData = tileMapForeground.createPathfindMap();
 
+		// Player
 		player = new Player();
+		player.setPosition(levelData.playerSpawnPoint);
+		
 		addChild(player);
 
-		var fps_mem:FPS_Mem = new FPS_Mem(10, 10, 0xffffff);
-		addChild(fps_mem);
-
+		// Listener for player movement
 		addEventListener(MouseEvent.CLICK, onClick);
 		
-		Actuate.timer(3).onRepeat(insertRandomItem).repeat(20);
+		// Spawn potions
+		Actuate.timer(levelData.potionSpawnSpeed).onRepeat(insertRandomItem).repeat(levelData.potionAmount);
 	}
 	
 	public function centerLevel() {
-		x = (Lib.current.stage.stageWidth / 2.0) - ((mapWidth * TileManager.tileSize) / 2.0);
-		y = (Lib.current.stage.stageHeight / 2.0) - ((mapHeight * TileManager.tileSize) / 2.0);
+		this.scaleX = scale_X;
+		this.scaleY = scale_Y;
+		
+		x = (Lib.current.stage.stageWidth / 2.0) - (((mapWidth * TileManager.tileSize) / 2.0) * scaleX);
+		y = (Lib.current.stage.stageHeight / 2.0) - (((mapHeight * TileManager.tileSize) / 2.0) * scaleY);
 	}
 
 	private function onClick(e:MouseEvent)
@@ -91,13 +109,17 @@ class Level extends Sprite
 	
 	private function insertRandomItem() {
 		var item:Item = new ItemChemical(new ChemicalManager().GetRandomChemical());
-		var tile:TileBase = tileMapForeground.getTileByCoords(0, 0);
+		var tile:TileBase = tileMapForeground.getTile(levelData.potionSpawnPoint);
 		
+		// See if it is conveyorbelt
 		if (Std.is(tile, TileConveyorbelt)) {
 			var conveyor:TileConveyorbelt = cast(tile, TileConveyorbelt);
 			
-			if (conveyor.addItem(item, new Point(0, 0))) {
+			// Try to spawn the item otherwise punish the player
+			if (conveyor.addItem(item, levelData.potionSpawnPoint)) {
 				addChild(item);
+			} else {
+				Score.GetInstance().ChangeScore( -30);
 			}
 		}
 	}

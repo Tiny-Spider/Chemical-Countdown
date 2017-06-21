@@ -3,7 +3,7 @@ package;
 import util.Point;
 
 /**
- * ...
+ * An custom Haxe A* star implementation
  * @author Mark
  */
 class Pathfinder 

@@ -35,8 +35,8 @@ class Player extends Sprite
 
 		playerSprite = new Bitmap(Assets.getBitmapData("img/player.png"));
 
-		playerSprite.height = 64;
-		playerSprite.width = 64;
+		playerSprite.height = TileManager.tileSize;
+		playerSprite.width = TileManager.tileSize;
 
 		addChild(playerSprite);
 	}
@@ -141,6 +141,11 @@ class Player extends Sprite
 	public function getNextPoint():Point
 	{
 		return nextPoint != null ? nextPoint : getPoint();
+	}
+	
+	public function setPosition(point:Point) {
+		x = point.x * TileManager.tileSize;
+		y = point.y * TileManager.tileSize;
 	}
 
 	private function setDirection(direction:Direction)

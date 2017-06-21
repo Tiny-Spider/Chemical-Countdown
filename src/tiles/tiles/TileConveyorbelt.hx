@@ -11,16 +11,16 @@ import util.Point.Direction;
  * ...
  * @author Mark
  */
-class TileConveyorbelt extends TileBase implements IInteractable
+class TileConveyorbelt extends TileAnimated implements IInteractable
 {
 	private var currentItem:Item;
 	private var moveSpeed:Float = 1;
 	private var itemState:ItemState = ItemState.EMPTY;
 	private var previousPoint:Point;
 
-	public function new(x:Float, y:Float, type:Int, level:Level)
+	public function new(x:Float, y:Float, frameTime:Int, types:Array<Int>, level:Level)
 	{
-		super(x, y, type, level, false);
+		super(x, y, frameTime, types, level, false);
 	}
 
 	public function addItem(item:Item, point:Point):Bool
@@ -95,6 +95,10 @@ class TileConveyorbelt extends TileBase implements IInteractable
 	{
 		for (point in getPoint().getAdjacent())
 		{
+			if (currentItem == null) {
+				return;
+			}
+			
 			var tile:TileBase = level.tileMapForeground.getTile(point);
 
 			if (tile != null && !tile.getPoint().equals(previousPoint) && Std.is(tile, TileConveyorbelt))
@@ -116,7 +120,7 @@ class TileConveyorbelt extends TileBase implements IInteractable
 				//trace('EXIT ($id): x:$x - y:$y : targetX:$targetX - targetY:$targetY');
 
 				Actuate.tween(currentItem, moveSpeed, { x:targetX, y:targetY }).ease(Linear.easeNone).onComplete(pushItem, [conveyorbelt]);
-
+				
 				return;
 			}
 		}
@@ -135,7 +139,7 @@ class TileConveyorbelt extends TileBase implements IInteractable
 	
 	public override function createNew(level:Level):TileBase
 	{
-		var tile = new TileConveyorbelt (x, y, id, level);
+		var tile = new TileConveyorbelt (x, y, frameTime, types, level);
 		tile.matrix = matrix.clone ();
 		tile.tileset = tileset;
 		return tile;
