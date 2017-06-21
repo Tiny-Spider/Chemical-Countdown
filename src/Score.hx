@@ -20,12 +20,12 @@ class Score
 		instance = this;
 	}
 	
-	public static function GetInstance():Score
+	public static function getInstance():Score
 	{
 		return instance;
 	}
 	
-	public function ResetScore(){
+	public function resetScore(){
 		score = 0;
 		if (callback != null){
 			callback();
@@ -33,7 +33,7 @@ class Score
 		
 	}
 	
-	public function ChangeScore(amount : Int){
+	public function changeScore(amount : Int){
 		score += amount;
 		if (callback != null){
 			callback();

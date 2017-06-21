@@ -15,7 +15,7 @@ class ScreenManager
 		currentScreen = new Screen();
 	}
 	
-	public function LoadScreen(screenType : ScreenType){
+	public function loadScreen(screenType : ScreenType){
 		lastScreen = currentScreen;
 		
 		switch(screenType){
@@ -30,11 +30,11 @@ class ScreenManager
 			default:
 				trace("No screen");
 		}
-		lastScreen.OnDestroy();
+		lastScreen.onDestroy();
 	}
 	
-	public function LoadLastScreen(){
-		LoadScreen(lastScreen.screenType);
+	public function loadLastScreen(){
+		loadScreen(lastScreen.screenType);
 	}
 	
 }

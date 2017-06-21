@@ -18,7 +18,7 @@ class MenuScreen extends Screen
 		screenType = ScreenType.Menu;
 	}
 	
-	public override function OnLoad(){
+	public override function onLoad(){
 		
 	}
 }

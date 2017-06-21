@@ -13,7 +13,7 @@ class Leaderboards
 	
 	public function new() 
 	{
-		OpenConnection();
+		openConnection();
 		
 		var resultSet:ResultSet = connection.request("SELECT * FROM highscores");
 		
@@ -23,11 +23,11 @@ class Leaderboards
 		
 	}
 	
-	function OpenConnection(){
+	function openConnection(){
 		connection = Sqlite.open("data/database.db");
 	}
 	
-	function CloseConnection(){
+	function closeConnection(){
 		connection.close();
 	}
 

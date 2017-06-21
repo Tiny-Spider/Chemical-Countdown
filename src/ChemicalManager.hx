@@ -15,14 +15,14 @@ class ChemicalManager
 	public function new()
 	{
 		instance = this;
-		CreateChemicalList();
+		createChemicalList();
 	}
-	public static function GetInstance():ChemicalManager{
+	public static function getInstance():ChemicalManager{
 		return instance;
 	}
 	
 	//temp
-	private function CreateChemicalList()
+	private function createChemicalList()
 	{
 		//chemicalList.push(new Chemical("Sulphuric Acid", RED, TRIANGLE, DisposalType.ACIDIC));
 		//chemicalList.push(new Chemical("Hydrochloric Acid", RED, ROUND, DisposalType.ACIDIC));
@@ -57,7 +57,7 @@ class ChemicalManager
 		chemicalList.push(new Chemical("Mercuric Chloride",YELLOW,SQUARE, DisposalType.ACIDIC,"img/chemicals/flask_yellow_square.png"));
 	}
 
-	public function GetRandomChemical():Chemical
+	public function getRandomChemical():Chemical
 	{
 		return chemicalList[Math.floor(Math.random() * chemicalList.length)];
 	}

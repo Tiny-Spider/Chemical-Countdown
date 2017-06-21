@@ -108,7 +108,7 @@ class Level extends Sprite
 	}
 	
 	private function insertRandomItem() {
-		var item:Item = new ItemChemical(new ChemicalManager().GetRandomChemical());
+		var item:Item = new ItemChemical(new ChemicalManager().getRandomChemical());
 		var tile:TileBase = tileMapForeground.getTile(levelData.potionSpawnPoint);
 		
 		// See if it is conveyorbelt
@@ -119,7 +119,7 @@ class Level extends Sprite
 			if (conveyor.addItem(item, levelData.potionSpawnPoint)) {
 				addChild(item);
 			} else {
-				Score.GetInstance().ChangeScore( -30);
+				Score.getInstance().changeScore( -30);
 			}
 		}
 	}

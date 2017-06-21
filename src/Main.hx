@@ -57,6 +57,6 @@ class Main extends Sprite
 	}
 	
 	public function LoadScreen(){
-		screenManager.LoadScreen(ScreenType.Title);
+		screenManager.loadScreen(ScreenType.Title);
 	}
 }

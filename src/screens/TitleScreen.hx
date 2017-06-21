@@ -20,10 +20,10 @@ class TitleScreen extends Screen
 		super();
 		trace("Titlescreen loaded");
 		screenType = ScreenType.Title;
-		OnLoad();
+		onLoad();
 	}
 	
-	public override function OnLoad(){
+	public override function onLoad(){
 		
 		var scoreTextField:TextField = new TextField();
 		var myStage : Stage = Lib.current.stage;
@@ -48,21 +48,21 @@ class TitleScreen extends Screen
 		var buttonCount : Int = 0;
 		
 		//Start button
-		var startButton : Button = new Button(Assets.getBitmapData("img/UI/Play1.png"), Assets.getBitmapData("img/UI/Play2.png"), Assets.getBitmapData("img/UI/Play3.png"), Start);
+		var startButton : Button = new Button(Assets.getBitmapData("img/UI/Play1.png"), Assets.getBitmapData("img/UI/Play2.png"), Assets.getBitmapData("img/UI/Play3.png"), start);
 		
 		startButton.x = myStage.stageWidth /2 - (startButton.width /2);
 		startButton.y = myStage.stageHeight / 2 - (startButton.height / 2) - (startButton.height * buttonCount);
 		addChild(startButton);
 		buttonCount++;
 		
-		var leaderBoardButton : Button = new Button(Assets.getBitmapData("img/UI/Highscore1.png"), Assets.getBitmapData("img/UI/Highscore2.png"), Assets.getBitmapData("img/UI/Highscore3.png"), LeaderBoard);
+		var leaderBoardButton : Button = new Button(Assets.getBitmapData("img/UI/Highscore1.png"), Assets.getBitmapData("img/UI/Highscore2.png"), Assets.getBitmapData("img/UI/Highscore3.png"), leaderBoard);
 		
 		leaderBoardButton.x = myStage.stageWidth /2 - (leaderBoardButton.width /2);
 		leaderBoardButton.y = myStage.stageHeight / 2 - (leaderBoardButton.height / 2  - ( leaderBoardButton.height * buttonCount));
 		addChild(leaderBoardButton);
 		buttonCount++;
 		
-		var quitButton : Button = new Button(Assets.getBitmapData("img/UI/Exit1.png"), Assets.getBitmapData("img/UI/Exit2.png"), Assets.getBitmapData("img/UI/Exit3.png"), Quit);
+		var quitButton : Button = new Button(Assets.getBitmapData("img/UI/Exit1.png"), Assets.getBitmapData("img/UI/Exit2.png"), Assets.getBitmapData("img/UI/Exit3.png"), quit);
 		
 		quitButton.x = myStage.stageWidth /2 - (quitButton.width /2);
 		quitButton.y = myStage.stageHeight / 2 - (quitButton.height / 2  - ( quitButton.height * buttonCount));
@@ -72,16 +72,16 @@ class TitleScreen extends Screen
 		
 	}
 	
-	function Start(){
+	function start(){
 		trace("Start level");
-		Main.getInstance().screenManager.LoadScreen(ScreenType.Game);
+		Main.getInstance().screenManager.loadScreen(ScreenType.Game);
 	}
 	
-	function LeaderBoard(){
-		Main.getInstance().screenManager.LoadScreen(ScreenType.Leaderboard);
+	function leaderBoard(){
+		Main.getInstance().screenManager.loadScreen(ScreenType.Leaderboard);
 	}
 	
-	function Quit(){
+	function quit(){
 		trace("Quit game");
 		System.exit(0);
 	}

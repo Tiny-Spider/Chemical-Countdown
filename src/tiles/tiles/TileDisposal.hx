@@ -32,11 +32,11 @@ class TileDisposal extends TileBase implements IInteractable
 
 			if (item.getChemical().disposalType == disposalType)
 			{
-				Score.GetInstance().ChangeScore(Score.scoreCorrectDisposal);
+				Score.getInstance().changeScore(Score.scoreCorrectDisposal);
 			}
 			else
 			{
-				Score.GetInstance().ChangeScore(Score.scoreIncorrectDisposal);
+				Score.getInstance().changeScore(Score.scoreIncorrectDisposal);
 			}
 		}
 	}
