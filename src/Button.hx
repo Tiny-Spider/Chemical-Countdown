@@ -14,6 +14,8 @@ import openfl.text.TextFieldAutoSize;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
+import openfl.media.Sound;
+
 /**
  * Simple Button Class
  */
@@ -65,6 +67,11 @@ class Button extends Sprite
 		addEventListener( Event.ADDED_TO_STAGE, init );
 	}
 	
+	function playSound(){
+		var sound:Sound = Assets.getSound("audio/button/BUTTON Plastic Light Switch Off (mono).wav");
+		sound.play();
+	}
+	
 	function init( e:Event)
 	{
 		removeEventListener( Event.ADDED_TO_STAGE, init );
@@ -103,5 +110,8 @@ class Button extends Sprite
 	function onClick( e:MouseEvent ):Void
 	{
 		callback();
+		playSound();
 	}
+	
+	
 }

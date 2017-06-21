@@ -78,7 +78,7 @@ class Level extends Sprite
 		this.scaleX = scale_X;
 		this.scaleY = scale_Y;
 		
-		x = (Lib.current.stage.stageWidth / 2.0) - (((mapWidth * TileManager.tileSize) / 2.0) * scaleX);
+		x = (Lib.current.stage.stageWidth / 2.0) - (((mapWidth * TileManager.tileSize) / 2.0) * scaleX) + 100; //TEMP +100 for item UI
 		y = (Lib.current.stage.stageHeight / 2.0) - (((mapHeight * TileManager.tileSize) / 2.0) * scaleY);
 	}
 

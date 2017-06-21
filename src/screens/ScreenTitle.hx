@@ -9,6 +9,9 @@ import openfl.text.TextField;
 import openfl.system.System;
 import screens.ScreenManager;
 
+import openfl.media.Sound;
+import openfl.media.SoundTransform;
+
 /**
  * Title Screen
  */
@@ -30,10 +33,18 @@ class ScreenTitle extends Screen
 		
 		
 		//Background
-		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/background.png"));
+		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/titleScreen.jpg"));
 		bitmap.width = Lib.current.stage.stageWidth;
 		bitmap.height = Lib.current.stage.stageHeight;
 		addChild(bitmap);
+		
+		//Music
+		if (Main.getInstance().audioOn){
+			Main.getInstance().musicChannel.stop();
+			var bgm : Sound = Assets.getSound("audio/menu_music.ogg");
+			trace(bgm);
+			Main.getInstance().musicChannel = bgm.play(0, 100, Main.getInstance().musicTransform);
+		}
 		
 		//Text field test
 		scoreTextField.width = 100;
@@ -44,6 +55,14 @@ class ScreenTitle extends Screen
 		scoreTextField.text = "Title screen";
 		scoreTextField.textColor = 0x80FF00;
 		//addChild(scoreTextField);
+		
+		
+		
+		//Title image
+		//bitmap = new Bitmap(Assets.getBitmapData("img/titleS.png"));
+		//bitmap.x = (Lib.current.stage.stageWidth / 2) + (bitmap.width / 2); 
+		//bitmap.y = Lib.current.stage.stageHeight / 3);
+		//addChild(bitmap);
 		
 		var buttonCount : Int = 0;
 		

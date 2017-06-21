@@ -15,6 +15,8 @@ import screens.ScreenManager.ScreenType;
 import screens.ScreenGameMenu;
 import src.Score;
 import util.FPS_Mem;
+import openfl.media.Sound;
+import openfl.media.SoundTransform;
 
 /**
  * Game Screen
@@ -40,6 +42,7 @@ class ScreenGame extends Screen
 		screenType = ScreenType.Game;
 		score = Score.getInstance();
 		score.setCallBack(updateUI);
+		score.resetScore();
 		
 		onLoad();
 	}
@@ -58,7 +61,15 @@ class ScreenGame extends Screen
 		addChild(bitmap);
 		
 		var scoreTextFormat : TextFormat = new TextFormat("fonts/zero hour.ttf", 24, 0x80FF00, true);
-
+		
+		//Music
+		if (Main.getInstance().audioOn){
+			Main.getInstance().musicChannel.stop();
+			var bgm : Sound = Assets.getSound("audio/In-game Music.ogg");
+			trace(bgm);
+			Main.getInstance().musicChannel = bgm.play(0, 100, Main.getInstance().musicTransform);
+		}
+		
 		// Score
 		scoreText.width = 300;
 		scoreText.x = 10;
@@ -86,28 +97,29 @@ class ScreenGame extends Screen
 		var menuButton : Button = new Button(Assets.getBitmapData("img/UI/XButton1.png"), Assets.getBitmapData("img/UI/XButton2.png"), Assets.getBitmapData("img/UI/XButton3.png"), menuButton);
 
 		menuButton.x = -75;
-		menuButton.y = menuButton.height / 4;
+		menuButton.y = menuButton.height * 0.5;
 		
 		addChild(menuButton);
 		
 		// Item UI
-		itemText.height = 100;
+		var itemTextFormat : TextFormat = new TextFormat(null,24, 0x000000, true);
+		itemText.height = 300;
 		itemText.width = 500;
-		itemText.x = (Lib.current.stage.stageWidth / 2.0) - itemImage.width;
+		itemText.x = 30;
 		itemText.y = (Lib.current.stage.stageHeight) - itemText.height;
-		itemText.setTextFormat(scoreTextFormat);
+		itemText.setTextFormat(itemTextFormat);
 		itemText.selectable = false;
 		
 		itemImage.height = 100;
 		itemImage.width = 100;
-		itemImage.x = itemText.x + itemImage.width + 30;
-		itemImage.y = (Lib.current.stage.stageHeight) - itemImage.height - 30;
+		itemImage.x = 30;
+		itemImage.y = 100;
 		
 		addChild(itemText);
 		addChild(itemImage);
 		
 		var fps_mem:FPS_Mem = new FPS_Mem(10, 10, 0xffffff);
-		addChild(fps_mem);
+		//addChild(fps_mem); 
 
 		loadLevel();
 	}
@@ -128,8 +140,8 @@ class ScreenGame extends Screen
 		
 		itemImage.height = 100;
 		itemImage.width = 100;
-		itemImage.x = itemText.x - itemImage.width - 30;
-		itemImage.y = (Lib.current.stage.stageHeight) - itemImage.height - 50;
+		itemImage.x = itemText.x;
+		itemImage.y = itemText.y - itemImage.height;
 	}
 
 	// Interaction with the in game menu button.

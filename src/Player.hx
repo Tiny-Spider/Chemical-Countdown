@@ -9,6 +9,7 @@ import tiles.TileManager;
 import motion.Actuate;
 import motion.easing.Linear;
 import tiles.tiles.IInteractable;
+import openfl.media.Sound;
 
 /**
  * ...
@@ -109,6 +110,9 @@ class Player extends Sprite
 		
 		onItemSwitch(this.item);
 		
+		var sound:Sound = Assets.getSound("audio/button/BUTTON Distinct (mono).wav");
+		sound.play();
+		
 		return item;
 	}
 
@@ -121,6 +125,8 @@ class Player extends Sprite
 		}
 		
 		onItemSwitch(this.item);
+		var sound:Sound = Assets.getSound("audio/button/BUTTON Very Bright Click (mono).wav");
+		sound.play();
 	}
 
 	public function getX():Int

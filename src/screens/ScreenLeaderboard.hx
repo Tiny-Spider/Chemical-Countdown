@@ -5,6 +5,8 @@ import openfl.Lib;
 import openfl.display.Stage;
 import openfl.text.TextField;
 import screens.ScreenManager.ScreenType;
+import openfl.media.Sound;
+import openfl.media.SoundTransform;
 
 /**
  * Leaderboard Screen
@@ -17,6 +19,7 @@ class ScreenLeaderboard extends Screen
 		super();
 		trace("Leaderboardscreen loaded");
 		screenType = ScreenType.Leaderboard;
+		onLoad();
 	}
 	
 	public override function onLoad(){
@@ -25,7 +28,7 @@ class ScreenLeaderboard extends Screen
 		backButton.x = -75;
 		backButton.y = 0 + Lib.current.stage.stageHeight - backButton.height;
 		addChild(backButton);
-		onLoad();
+		
 	}
 	
 	function back(){

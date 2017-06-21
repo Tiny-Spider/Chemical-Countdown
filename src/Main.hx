@@ -12,6 +12,9 @@ import screens.Screen;
 import screens.ScreenManager;
 import screens.ScreenTitle;
 
+import openfl.media.SoundChannel;
+import openfl.media.SoundTransform;
+
 import src.Score;
 
 /**
@@ -27,6 +30,11 @@ class Main extends Sprite
 	public var leaderBoards:Leaderboards;
 
 	public var score : Score;
+	
+	//Sound
+	public var audioOn : Bool = true;
+	public var musicChannel : SoundChannel = new SoundChannel();
+	public var musicTransform : SoundTransform = new SoundTransform(0.01, 0);
 
 	public function new()
 	{

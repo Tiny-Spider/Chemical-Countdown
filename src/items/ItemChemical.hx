@@ -24,8 +24,8 @@ class ItemChemical extends Item
 		
 		tileImage = new Bitmap(displayImage);
 		
-		tileImage.height = TileManager.tileSize;
-		tileImage.width = TileManager.tileSize;
+		tileImage.height = TileManager.tileSize /2;
+		tileImage.width = TileManager.tileSize /2;
 		
 		//image.x = -(TileManager.tileSize / 2);
 		//image.y = -(TileManager.tileSize / 2);
