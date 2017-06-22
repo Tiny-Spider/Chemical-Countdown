@@ -110,8 +110,7 @@ class Player extends Sprite
 		
 		onItemSwitch(this.item);
 		
-		var sound:Sound = Assets.getSound("audio/button/BUTTON Distinct (mono).wav");
-		sound.play();
+		
 		
 		return item;
 	}

@@ -4,6 +4,8 @@ import items.ItemChemical;
 import DisposalType;
 import levels.Level;
 import src.Score;
+import openfl.media.Sound;
+import openfl.Assets;
 
 /**
  * ...
@@ -34,10 +36,14 @@ class TileDisposal extends TileBase implements IInteractable
 			if (item.getChemical().disposalType == disposalType)
 			{
 				Score.getInstance().changeScore(Score.scoreCorrectDisposal);
+				var sound:Sound = Assets.getSound("audio/Correct disposal.ogg");
+				sound.play();
 			}
 			else
 			{
 				Score.getInstance().changeScore(Score.scoreIncorrectDisposal);
+				var sound:Sound = Assets.getSound("audio/Incorrect disposal.ogg");
+				sound.play();
 			}
 		}
 	}
