@@ -22,7 +22,7 @@ class LevelManager
 	private var levelOneForeground:Array<Array<Int>> = [
 		[14, 14, 14, 14, 14, 14, -1],
 		[-1, -1, -1, -1, -1, -1, -1],
-		[-1, 18, 19, -1, -1, -1, -1],
+		[-1, 18, -1, 19, -1, -1, -1],
 		[-1, -1, -1, -1, -1, -1, -1],
 		[-1,  9, 10, 11, 12, 13, -1]
 		];
@@ -45,7 +45,7 @@ class LevelManager
 	
 	public function new() 
 	{
-		levels.push(new LevelData(3.0, 20, new Point(0, 0), new Point(0, 1), levelOneBackground, levelOneForeground));
+		levels.push(new LevelData(5.0, 20, new Point(0, 0), new Point(0, 1), levelOneBackground, levelOneForeground));
 		levels.push(new LevelData(3.0, 20, new Point(0, 2), new Point(2, 0), levelTwoBackground, levelTwoForeground));
 	}
 	

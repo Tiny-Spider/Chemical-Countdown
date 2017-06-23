@@ -15,7 +15,7 @@ import util.Point.Direction;
 class TileConveyorbelt extends TileAnimated implements IInteractable
 {
 	private var currentItem:Item;
-	private var moveSpeed:Float = 1;
+	private var moveSpeed:Float = 1.5;
 	private var itemState:ItemState = ItemState.EMPTY;
 	private var previousPoint:Point;
 

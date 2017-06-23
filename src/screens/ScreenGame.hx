@@ -60,7 +60,7 @@ class ScreenGame extends Screen
 		bitmap.height = Lib.current.stage.stageHeight;
 		addChild(bitmap);
 		
-		var scoreTextFormat : TextFormat = new TextFormat("fonts/zero hour.ttf", 24, 0x80FF00, true);
+		var scoreTextFormat : TextFormat = new TextFormat("_sans", 24, 0x80FF00, true);
 		
 		//Music
 		if (Main.getInstance().audioOn){
@@ -91,7 +91,7 @@ class ScreenGame extends Screen
 		timerText.selectable = false;
 		timerText.setTextFormat(scoreTextFormat);
 		
-		addChild(timerText);
+		//addChild(timerText);
 
 		// Menu button
 		var menuButton : Button = new Button(Assets.getBitmapData("img/UI/XButton1.png"), Assets.getBitmapData("img/UI/XButton2.png"), Assets.getBitmapData("img/UI/XButton3.png"), menuButton);
@@ -102,7 +102,7 @@ class ScreenGame extends Screen
 		addChild(menuButton);
 		
 		// Item UI
-		var itemTextFormat : TextFormat = new TextFormat(null,24, 0x000000, true);
+		var itemTextFormat : TextFormat = new TextFormat("_sans", 24, 0x80FF00, true);
 		itemText.height = 300;
 		itemText.width = 500;
 		itemText.x = 30;

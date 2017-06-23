@@ -34,7 +34,7 @@ class Main extends Sprite
 	//Sound
 	public var audioOn : Bool = true;
 	public var musicChannel : SoundChannel = new SoundChannel();
-	public var musicTransform : SoundTransform = new SoundTransform(0.01, 0);
+	public var musicTransform : SoundTransform = new SoundTransform();
 
 	public function new()
 	{

@@ -62,7 +62,11 @@ class Point
 
 	public static function getDirectionBetween(fromPoint:Point, toPoint:Point):Direction
 	{
-		if (fromPoint.y < toPoint.y)
+		if (fromPoint.y > toPoint.y)
+		{
+			return Direction.UP;
+		}
+		else if (fromPoint.y < toPoint.y)
 		{
 			return Direction.DOWN;
 		}
