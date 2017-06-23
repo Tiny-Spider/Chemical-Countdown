@@ -19,7 +19,7 @@ class Player extends Sprite
 {
 	private var playerSprite:Bitmap;
 	private var item:Item;
-	private var moveSpeed:Float = 0.4;
+	private var moveSpeed:Float = 0.3;
 	private var currentDirection:Direction = Direction.UP;
 
 	// Pathfinding
