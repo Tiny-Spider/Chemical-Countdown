@@ -8,7 +8,7 @@ import openfl.display.Stage;
 import openfl.Lib;
 
 /**
- * Base Screen Class
+ * 
  */
 class ScreenGameMenu extends Sprite
 {
@@ -33,12 +33,6 @@ class ScreenGameMenu extends Sprite
 		var background : Bitmap = new Bitmap(Assets.getBitmapData("img/UI/InGameMenu.png"));
 		background.x = (myStage.stageWidth / 2) - (background.width / 2);
 		background.y = (myStage.stageHeight / 2) - (background.height / 2);
-		
-		
-		//sprite.x = background.x;
-		//sprite.y = background.y;
-		//sprite.width = background.width;
-		//sprite.height = background.height;
 		
 		addChild(background);
 		
@@ -67,6 +61,7 @@ class ScreenGameMenu extends Sprite
 		buttonCount++;
 	}
 	
+	//Closes the InGameMenu screen
 	function resume(){
 		screen.removeChild(this);
 		trace(cast(screen, ScreenGame).inGameMenuOpen);
@@ -74,10 +69,12 @@ class ScreenGameMenu extends Sprite
 		trace(cast(screen, ScreenGame).inGameMenuOpen);
 	}
 	
+	//Restarts the level.
 	function restart(){
 		//Restart level here.
 	}
 	
+	//Returns to the main menu.
 	function quit(){
 		Main.getInstance().screenManager.loadScreen(ScreenType.Title);
 	}

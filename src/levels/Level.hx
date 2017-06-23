@@ -127,7 +127,7 @@ class Level extends Sprite
 	}
 
 	// Get a nearby open tile, otherwise return the input (which will fail the pathfinding)
-	private function getNextOpenPoint(centerPoint:Point, direction:Direction)
+	private function getNextOpenPoint(centerPoint:Point, direction:Direction):Point
 	{
 		for (point in Point.getAdjacentDirectionalPoints(centerPoint, direction))
 		{

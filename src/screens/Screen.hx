@@ -27,15 +27,11 @@ class Screen extends Sprite
 		Main.getInstance().addChild(this);
 	}
 	
-	public function onLoad() {
+	public function onLoad(){
 		
 	}
 	
-	public function onDestroy() {
-		
-	}
-	
-	public function onResize() {
+	public function onDestroy(){
 		
 	}
 }

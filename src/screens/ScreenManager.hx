@@ -23,8 +23,6 @@ class ScreenManager
 		switch(screenType){
 			case ScreenType.Title:
 				currentScreen = new ScreenTitle();
-			case ScreenType.Menu:
-				currentScreen = new ScreenMenu();
 			case ScreenType.Game:
 				currentScreen = new ScreenGame();
 			case ScreenType.Leaderboard:

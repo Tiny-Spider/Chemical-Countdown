@@ -17,11 +17,13 @@ class ChemicalManager
 		instance = this;
 		createChemicalList();
 	}
+	
+	//Returns the instance of ChemicalManager
 	public static function getInstance():ChemicalManager{
 		return instance;
 	}
 	
-	//temp
+	//temp Creates the chemical list
 	private function createChemicalList()
 	{
 		//chemicalList.push(new Chemical("Sulphuric Acid", RED, TRIANGLE, DisposalType.ACIDIC));
@@ -56,7 +58,8 @@ class ChemicalManager
 		chemicalList.push(new Chemical("Silver Nitrate",YELLOW,ROUND, DisposalType.ACIDIC,"img/chemicals/flask_round_yellow.png"));
 		chemicalList.push(new Chemical("Mercuric Chloride",YELLOW,SQUARE, DisposalType.ACIDIC,"img/chemicals/flask_rectangle_yellow.png"));
 	}
-
+	
+	//Returns a random chemical
 	public function getRandomChemical():Chemical
 	{
 		return chemicalList[Math.floor(Math.random() * chemicalList.length)];

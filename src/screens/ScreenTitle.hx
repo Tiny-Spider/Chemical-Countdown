@@ -26,6 +26,7 @@ class ScreenTitle extends Screen
 		onLoad();
 	}
 	
+	//Loads UI and other elements
 	public override function onLoad(){
 		
 		var scoreTextField:TextField = new TextField();
@@ -56,14 +57,6 @@ class ScreenTitle extends Screen
 		scoreTextField.textColor = 0x80FF00;
 		//addChild(scoreTextField);
 		
-		
-		
-		//Title image
-		//bitmap = new Bitmap(Assets.getBitmapData("img/titleS.png"));
-		//bitmap.x = (Lib.current.stage.stageWidth / 2) + (bitmap.width / 2); 
-		//bitmap.y = Lib.current.stage.stageHeight / 3);
-		//addChild(bitmap);
-		
 		var buttonCount : Int = 0;
 		
 		//Start button
@@ -74,6 +67,7 @@ class ScreenTitle extends Screen
 		addChild(startButton);
 		buttonCount++;
 		
+		//Leaderboard button
 		var leaderBoardButton : Button = new Button(Assets.getBitmapData("img/UI/Highscore1.png"), Assets.getBitmapData("img/UI/Highscore2.png"), Assets.getBitmapData("img/UI/Highscore3.png"), leaderBoard);
 		
 		leaderBoardButton.x = myStage.stageWidth /2 - (leaderBoardButton.width /2);
@@ -81,6 +75,7 @@ class ScreenTitle extends Screen
 		addChild(leaderBoardButton);
 		buttonCount++;
 		
+		//Quit button
 		var quitButton : Button = new Button(Assets.getBitmapData("img/UI/Exit1.png"), Assets.getBitmapData("img/UI/Exit2.png"), Assets.getBitmapData("img/UI/Exit3.png"), quit);
 		
 		quitButton.x = myStage.stageWidth /2 - (quitButton.width /2);
@@ -91,15 +86,18 @@ class ScreenTitle extends Screen
 		
 	}
 	
+	//Starts the game to GameScreen
 	function start(){
 		trace("Start level");
 		Main.getInstance().screenManager.loadScreen(ScreenType.Game);
 	}
 	
+	//Goes to LeaderboardScreen
 	function leaderBoard(){
 		Main.getInstance().screenManager.loadScreen(ScreenType.Leaderboard);
 	}
 	
+	//Close the game
 	function quit(){
 		trace("Quit game");
 		System.exit(0);

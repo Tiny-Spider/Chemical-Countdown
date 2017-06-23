@@ -31,6 +31,7 @@ class ScreenLeaderboard extends Screen
 		
 	}
 	
+	//Back button returns to last screen.
 	function back(){
 		Main.getInstance().screenManager.loadLastScreen();
 	}

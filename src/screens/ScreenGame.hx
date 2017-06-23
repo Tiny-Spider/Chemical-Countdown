@@ -52,7 +52,7 @@ class ScreenGame extends Screen
 		scoreText.text = "Score: " + Score.getInstance().score;
 	}
 
-	// Load of the UI
+	// Load of the UI and other in game elements
 	public override function onLoad()
 	{
 		var bitmap : Bitmap = new Bitmap(Assets.getBitmapData("img/background.png"));
@@ -124,6 +124,7 @@ class ScreenGame extends Screen
 		loadLevel();
 	}
 	
+	//Loads the level in the game screen.
 	private function loadLevel() {
 		var leveldata:LevelData = Main.getLevelManager().getLevel(0);
 		var level:Level = new Level(leveldata);
@@ -134,6 +135,7 @@ class ScreenGame extends Screen
 		addChild(level);
 	}
 	
+	//Updates the UI for the item that the player is holding.
 	private function updateItemDisplay(item:Item) {
 		itemText.text = item == null ? "" : item.displayName;
 		itemImage.bitmapData = item == null ? null : item.displayImage;
